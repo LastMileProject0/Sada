@@ -1,0 +1,2 @@
+# No third-party runtime packages are required for Sirin's Step 2 bootstrap.
+# Add the agreed dependencies after Salma/Ethar/Maymona confirm their implementations.

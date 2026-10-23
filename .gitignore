@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Outputs are generated; master inputs remain tracked
+outputs/
+reports/generated/
+logs/
+*.log
