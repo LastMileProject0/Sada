@@ -1,0 +1,10 @@
+{
+  "example_only": true,
+  "plan_id": "P0",
+  "accessibility_findings": [{"resident_id":"R0001", "channel_id":"CH01", "status":"Not Assessed—No Delivery", "reason":"Selected channel has no arrival", "actionable":null, "evidence":[{"reference_id":"SCENARIO_TEST", "description":"Synthetic delivery failure record", "kind":"Simulation Record"}]}],
+  "policy_findings": [
+    {"check_type":"Authorization", "status":"No Issue Identified", "reason":"Illustrative scenario rule only", "plan_id":"P0", "evidence":[{"reference_id":"SCENARIO_AUTH", "description":"Synthetic authorization rule", "kind":"Synthetic Scenario Assumption"}]},
+    {"check_type":"Privacy", "status":"Insufficient Information", "reason":"Requires human review", "plan_id":"P0", "evidence":[{"reference_id":"SCENARIO_PRIV", "description":"Unresolved privacy assessment", "kind":"Unresolved Legal Question"}]}
+  ],
+  "cap_advisory": {"note":"CAP 1.2 advisory explanation only; no automated compliance verdict.", "source_ids":["SRC-01"]}
+}
