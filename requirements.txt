@@ -1,4 +1,4 @@
-# No third-party runtime packages are required for Sirin's Step 2 bootstrap.
-# Add the agreed dependencies after Salma/Ethar/Maymona confirm their implementations.
+# LastMile AI - Step 2 Dependencies
+# Required for loading and validating the synthetic Excel dataset.
 pandas
 openpyxl
