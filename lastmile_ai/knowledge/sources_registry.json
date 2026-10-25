@@ -1,0 +1,155 @@
+{
+  "project": "LastMile AI",
+  "artifact": "sources_registry",
+  "step": "2.1",
+  "baseline": "Approved Step 1 Master Reference — 2026-10-23",
+  "registry_version": "1.1.0",
+  "purpose": "Reference inventory for knowledge-based Agent 3 explanations and supporting architecture research; not a legal or technical certification engine.",
+  "core_sources_count": 5,
+  "sources": [
+    {
+      "id": "SRC-01",
+      "title": "Common Alerting Protocol (CAP) Version 1.2",
+      "issuing_body": "OASIS Emergency Management Technical Committee",
+      "document_type": "OASIS Standard",
+      "version": "1.2",
+      "publication_date": "2010-07-01",
+      "official_url": "https://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html",
+      "relevant_sections": [
+        "3.2.1 Alert",
+        "3.2.2 Info",
+        "3.2.3 Resource",
+        "3.2.4 Area",
+        "4 Conformance"
+      ],
+      "project_use": "Source-backed advisory about emergency-alert message structure, fields and contextual required/optional/conditional distinctions, plus warning-information quality concerns.",
+      "agent_3_use": "Retrieve and cite relevant CAP sections when explaining structured warning information; distinguish missing optional instructions from confirmed CAP violations.",
+      "limitations": [
+        "No automated XML/schema validation or CAP pass/fail in the approved MVP.",
+        "CAP conformance does not establish delivery, accessibility, usability, actionability or comprehension.",
+        "Do not treat an absent optional field as a mandatory-field violation."
+      ],
+      "verification_needed": [
+        "Whether a UAE-specific CAP implementation profile applies.",
+        "Whether local rules add mandatory fields or channel mappings."
+      ]
+    },
+    {
+      "id": "SRC-02",
+      "title": "ITU-T Y.3172 — Architectural framework for machine learning in future networks including IMT-2020",
+      "issuing_body": "International Telecommunication Union — Telecommunication Standardization Sector (ITU-T)",
+      "document_type": "ITU-T Recommendation",
+      "version": "Y.3172 (06/2019)",
+      "publication_date": "2019-06-22",
+      "official_url": "https://www.itu.int/rec/T-REC-Y.3172-201906-I/en",
+      "relevant_sections": [
+        "ML pipelines",
+        "ML management and orchestration",
+        "Sandbox concepts"
+      ],
+      "project_use": "Architectural inspiration for component organization, ML-related data flows, orchestration and isolated simulation testing.",
+      "agent_3_use": "Background architectural context only; not a rule for deciding alert accessibility or legal compliance.",
+      "limitations": [
+        "The Recommendation does not mandate LastMile AI's exact four-agent architecture.",
+        "No claim of implementation certification or full Y.3172 compliance."
+      ],
+      "verification_needed": [
+        "Which concepts are actually implemented in the MVP.",
+        "Additional real-network requirements if integration is considered in the future."
+      ]
+    },
+    {
+      "id": "SRC-03",
+      "title": "TS FS 001 — Enabling Cell Broadcast for National Public Warning Service (UAE-Alert)",
+      "issuing_body": "Telecommunications Regulatory Authority (TRA), now Telecommunications and Digital Government Regulatory Authority (TDRA), UAE",
+      "document_type": "Technical specification",
+      "version": "2.0",
+      "publication_date": "2019-11-25",
+      "official_url": "https://tdra.gov.ae/en/about/tdra-sectors/telecommunication/the-technology-development-affairs/-/media/1ABB576C428A4BAC8E777204233D5033.ashx",
+      "version_status": "An official publicly linked version identified in Step 1 research; latest applicable edition not confirmed.",
+      "relevant_sections": [
+        "Cell Broadcast handset reception",
+        "Arabic/English presentation",
+        "Alert indications and device behavior"
+      ],
+      "project_use": "UAE-specific context for emergency-alert presentation capabilities and device warning modalities.",
+      "agent_3_use": "Explain Cell Broadcast device-related accessibility and presentation context with careful applicability notes.",
+      "limitations": [
+        "The document addresses Cell Broadcast; simulated CH01 is SMS, not Cell Broadcast.",
+        "Do not infer SMS requirements, national coverage metrics, or simulated delivery probabilities from this specification.",
+        "Cell Broadcast is not a sixth MVP channel."
+      ],
+      "verification_needed": [
+        "Whether version 2.0 remains the latest applicable technical specification.",
+        "Whether newer requirements or UAE CAP-to-Cell-Broadcast mappings exist."
+      ]
+    },
+    {
+      "id": "SRC-04",
+      "title": "UAE National Policy for Digital Accessibility",
+      "issuing_body": "Telecommunications and Digital Government Regulatory Authority (TDRA), UAE",
+      "document_type": "National policy",
+      "version": "March 2024 issue",
+      "publication_date": "2024-03",
+      "official_url": "https://dgov.tdra.gov.ae/en/publications/national-digital-accessibility-policy",
+      "relevant_sections": [
+        "Article 2 Policy Objectives (includes emergency services)",
+        "Article 3 Scope",
+        "Article 4 Inclusion",
+        "Annex 1 Digital Accessibility Guidelines"
+      ],
+      "project_use": "Accessibility and inclusive-design guidance for simulated warning channels and the future prototype interface.",
+      "agent_3_use": "Cite relevant inclusion principles when explaining resident/channel barriers while using the individual's recorded usability flags, not disability labels alone.",
+      "limitations": [
+        "Do not imply every policy provision automatically applies to all emergency alerts or telecommunications actors.",
+        "The synthetic 65+ dashboard group is distinct from the derived 60+ policy cohort.",
+        "WCAG-related website/app provisions do not automatically define all warning-channel requirements."
+      ],
+      "verification_needed": [
+        "Which provisions apply to a particular deployed service or authority.",
+        "Applicable specialist emergency warning accessibility standards and later amendments."
+      ]
+    },
+    {
+      "id": "SRC-05",
+      "title": "Federal Decree-Law No. (45) of 2021 Concerning the Protection of Personal Data",
+      "issuing_body": "United Arab Emirates Government",
+      "document_type": "Federal decree-law",
+      "version": "No. 45 of 2021",
+      "publication_date": "2021-09-20",
+      "effective_date": "2022-01-02",
+      "official_url": "https://uaelegislation.gov.ae/en/legislations/1972",
+      "relevant_sections": [
+        "Article 1 Definitions",
+        "Article 2 Scope and exceptions",
+        "Article 4 Processing without consent",
+        "Article 5 Processing controls",
+        "Article 18 Automated processing",
+        "Articles 20–21 Security and impact assessment",
+        "Articles 22–23 Cross-border transfers"
+      ],
+      "project_use": "Privacy-by-design guidance for synthetic data, purpose limitation, minimization, security, storage and review of hypothetical data sharing.",
+      "agent_3_use": "Explain relevant data-protection principles and flag scenario-specific privacy questions without concluding that an authority has violated the law.",
+      "limitations": [
+        "Government data and certain government entities and sector-specific data are excluded or specially governed under Article 2; applicability must be assessed.",
+        "Synthetic data should not identify real people; artificial labeling alone does not establish anonymity.",
+        "No legal certification, automatic unlawful/lawful decision or claim that all emergency processing is consent-exempt."
+      ],
+      "verification_needed": [
+        "Applicable executive regulations, amendments and sector-specific rules.",
+        "Legal basis, sensitive-data safeguards and cross-border conditions if real residents' data are ever used.",
+        "Whether a future implementation requires a data protection impact assessment or designated officer."
+      ]
+    }
+  ],
+  "cross_source_rules": [
+    "Use only five Step 1-approved core sources in this registry; optional 3GPP SMS reference is not added at this stage.",
+    "Label findings as verified-source information, documented synthetic scenario assumption, or unresolved legal/technical question.",
+    "Do not treat source citations as certification of legal compliance, CAP conformance, warning comprehension or real-world alert delivery.",
+    "Separate technical delivery, accessibility/usability, actionability, authorization and privacy analyses.",
+    "Use last approved Step 1 Master decisions when older research drafts differ.",
+    "No operational emergency alerts or real personal data in the MVP."
+  ],
+  "approval_alignment": "Sirin approved Arabic canonical warning, CH01–CH05 renderings and Arabic TTS for CH03; sources and advisory-only boundaries unchanged.",
+  "source_content_language_note": "Official source languages are unchanged; Arabic is the approved language of simulated warning renderings only."
+}

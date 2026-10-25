@@ -1,0 +1,149 @@
+{
+  "project": "LastMile AI",
+  "artifact": "warning_fixture",
+  "step": "2.2",
+  "fixture_version": "1.1.0",
+  "baseline": "Approved Step 1 Master Reference — 2026-10-23",
+  "fixture_status": "Warning wording and all five channel representations approved by team lead Sirin; implementation evidence and integration testing pending.",
+  "scenario": {
+    "scenario_id": "AL_WADI_FLASH_FLOOD",
+    "name": "Al Wadi Flash Flood Emergency",
+    "district": "Al Wadi District (fictional)",
+    "hazard": "Flash flood after intense rainfall",
+    "population_type": "Synthetic; 1,000 fictional residents",
+    "affected_zones": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "warning": {
+    "id": "ALWADI-FLOOD-EXERCISE-001",
+    "status": "Exercise",
+    "scope": "Public",
+    "language": "ar",
+    "headline": "تدريب فقط — تحذير من سيول مفاجئة في منطقة الوادي.",
+    "description": "تسببت الأمطار الغزيرة في خطر افتراضي لحدوث سيول مفاجئة في منطقة الوادي.",
+    "instruction": "ابتعدوا عن مياه السيول والمناطق المنخفضة، وانتقلوا إلى أماكن مرتفعة إذا كان ذلك آمناً. اتبعوا تعليمات جهة الطوارئ الافتراضية.",
+    "source_label": "جهة الطوارئ الافتراضية — تدريب ومحاكاة فقط",
+    "canonical_text": "تدريب فقط — تحذير من سيول مفاجئة في منطقة الوادي.\n\nتسببت الأمطار الغزيرة في خطر افتراضي لحدوث سيول مفاجئة في منطقة الوادي. ابتعدوا عن مياه السيول والمناطق المنخفضة، وانتقلوا إلى أماكن مرتفعة إذا كان ذلك آمناً. اتبعوا تعليمات جهة الطوارئ الافتراضية.",
+    "synthetic": true,
+    "operational_alert": false,
+    "actual_sent_at": null,
+    "actual_expires_at": null,
+    "text_direction": "rtl"
+  },
+  "simulation_policy": {
+    "valid_stage_choices": [
+      "T+00:00",
+      "T+02:00",
+      "T+04:00",
+      "T+06:00"
+    ],
+    "warning_content_fixed_across_stages_and_plans": true,
+    "fresh_warning_test_per_selected_stage": true,
+    "baseline_and_recovery_use_identical_stage_and_population": true,
+    "channel_ids": [
+      "CH01",
+      "CH02",
+      "CH03",
+      "CH04",
+      "CH05"
+    ],
+    "external_ev03_channel_permitted": false,
+    "observation_window_seconds": 60,
+    "on_time_delivery_seconds_max": 30,
+    "content_generation_translation_or_simplification": false,
+    "cap_reference": "SRC-01; advisory knowledge only, not a CAP document or conformance decision",
+    "no_real_broadcast_or_real_resident_data": true,
+    "effective_warning_coverage_gate": "Actually selected arrival <=30 s AND content sufficient AND documented individual format usability; unknown is not success. Delayed 30<t<=60 contributes only technical reach."
+  },
+  "content_requirements": {
+    "required_for_modeled_actionability": [
+      "hazard",
+      "affected_area",
+      "protective_instruction"
+    ],
+    "test_rule": "A channel can be considered actionable only if its documented rendered content conveys sufficient protective instructions and the individual can use that format; timely arrival alone is insufficient.",
+    "when_channel_rendering_or_personal_usability_is_unknown": "Needs Further Review",
+    "public_sirens_rule": "Alert-only; cannot independently establish Effective Warning Coverage",
+    "evaluation_independence": "Content sufficiency is distinct from technical delivery and individual accessibility/usability.",
+    "content_sufficiency_statuses": [
+      "Sufficient",
+      "Insufficient",
+      "Needs Further Review"
+    ],
+    "three_fixed_checks": {
+      "hazard_present": "Hazard clearly conveyed",
+      "affected_area_present": "Al Wadi affected area conveyed",
+      "protective_instruction_present": "Clear protective action conveyed"
+    },
+    "decision_rule": "Sufficient only when all three fields positively evidenced in the actual modeled rendering as received; Insufficient if any required element is confirmed missing; Needs Further Review if rendering, segment completeness or evidence is unknown. Sirens are alert-only and insufficient for standalone actionable coverage."
+  },
+  "channel_rendering_handoff": {
+    "status": "Approved Arabic per-channel renderings are in approved_channel_renderings; technical rendering evidence, TTS audio, mapping to schemas and integration tests remain outstanding.",
+    "rule": "All renderings are fixed for all stages and tested plans; no AI rewriting, simplification, auto-translation or resident-specific content generation."
+  },
+  "open_checks": [
+    "Create and document Arabic TTS audio file MP3/WAV and measure playback duration separately from simulated call arrival.",
+    "Verify physical SMS segmentation/receipt handling in simulation; no assumption that multipart SMS is fully received.",
+    "Align fixture IDs and content evidence with Salma schemas.py and agent_contracts.md; do not change her contracts without agreement.",
+    "Test complete renderings, per-resident usability and content sufficiency after integration; no invented coverage measurements.",
+    "Do not claim CAP validation, compliance certification or real operational warning."
+  ],
+  "approved_channel_renderings": {
+    "CH01": {
+      "channel": "SMS",
+      "language": "ar",
+      "text_direction": "rtl",
+      "text": "تدريب فقط: خطر سيول في منطقة الوادي. ابتعد عن مياه السيول والمناطق المنخفضة، وانتقل إلى مكان مرتفع إذا كان آمناً.",
+      "utf16_code_units": 113,
+      "sms_encoding_assumption": "UCS-2/UTF-16 family for Arabic SMS; modeled segment capacity 70 code units for single part or 67 per multipart segment (illustrative standard assumptions, not carrier-confirmed)",
+      "estimated_segments_under_assumption": 2,
+      "delivery_of_all_segments_confirmed": false,
+      "multi_part_receipt_rule": "Do not presume all segments are received; incomplete or uncertain received content -> Needs Further Review",
+      "technical_context": "SMS is not UAE-Alert Cell Broadcast"
+    },
+    "CH02": {
+      "channel": "Mobile App",
+      "language": "ar",
+      "text_direction": "rtl",
+      "screen_type": "Full alert screen, not just short notification",
+      "content": {
+        "headline": "تحذير من سيول مفاجئة — منطقة الوادي (تدريب فقط)",
+        "description": "تسببت الأمطار الغزيرة في خطر افتراضي لحدوث سيول مفاجئة.",
+        "protective_instructions": "ابتعد عن مياه السيول والمناطق المنخفضة. انتقل إلى مكان مرتفع إذا كان ذلك آمناً. اتبع تعليمات جهة الطوارئ الافتراضية."
+      },
+      "full_instructions_visible_assumption": true,
+      "eligibility_requirement": "Emergency app installed=Yes",
+      "accessibility_features": "Do not assume additional accessibility features without explicit simulation evidence"
+    },
+    "CH03": {
+      "channel": "Voice Call",
+      "language": "ar",
+      "modality": "Arabic text-to-speech (TTS) prerecorded audio",
+      "spoken_script": "هذا تدريب فقط.\n\nتحذير من سيول مفاجئة في منطقة الوادي نتيجة الأمطار الغزيرة.\n\nيرجى الابتعاد عن مياه السيول والمناطق المنخفضة.\n\nانتقلوا إلى أماكن مرتفعة إذا كان ذلك آمناً، واتبعوا تعليمات جهة الطوارئ الافتراضية.\n\nنؤكد أن هذا تدريب فقط.",
+      "tts_audio_file": null,
+      "tts_audio_status": "Pending production and integration; MP3/WAV not yet created",
+      "audio_duration_seconds": null,
+      "timing_separation": "Call simulated arrival time is separate from recording playback duration; call arrival alone does not prove full instruction heard or understood",
+      "individual_usability_field": "Voice usable"
+    },
+    "CH04": {
+      "channel": "Public Sirens",
+      "modality": "Nonverbal acoustic alert only",
+      "spoken_script": null,
+      "tts_used": false,
+      "alert_only": true,
+      "standalone_effective_warning_coverage": false
+    },
+    "CH05": {
+      "channel": "Digital Signage",
+      "language": "ar",
+      "text_direction": "rtl",
+      "display_text": "تدريب فقط — خطر سيول\n\nمنطقة الوادي\n\nابتعد عن مياه السيول والمناطق المنخفضة.\n\nاتجه إلى مكان مرتفع إذا كان آمناً.",
+      "simulation_display_assumption": "Assumed to display the entire approved text in a clear readable font; actual viewing/readability remains subject to resident profile and documented conditions",
+      "individual_usability_field": "Signage readable"
+    }
+  }
+}

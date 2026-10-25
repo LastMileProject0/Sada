@@ -1,0 +1,32 @@
+
+name: LastMile Step 2 Tests
+
+on:
+  push:
+    branches:
+      - integration/step2-handoffs
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run unit and integration tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
