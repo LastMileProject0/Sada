@@ -33,5 +33,5 @@
   "timely_seconds": 30,
   "observation_seconds": 60,
   "max_recovery_candidates": 3,
-  "status": "BOOTSTRAP_ONLY_NOT_A_SIMULATION"
+  "status": "STEP3_SYNTHETIC_SIMULATION_INTEGRATED"
 }

@@ -30,7 +30,7 @@ def verify_setup() -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="LastMile AI Step 2 project startup")
+    parser = argparse.ArgumentParser(description="LastMile AI approved synthetic project setup check")
     parser.add_argument("--check", action="store_true", help="Validate project setup and approved reference presence")
     args = parser.parse_args()
     try:
@@ -41,7 +41,9 @@ def main() -> int:
     print("PROJECT SETUP: PASS")
     print(f"Scenario: {cfg['scenario']} — {cfg['synthetic_residents']} SYNTHETIC residents")
     print("Enabled example channels: " + ", ".join(cfg["example_enabled_channels"]))
-    print("Agents/simulation/coverage metrics: NOT IMPLEMENTED YET (team Step 2 deliverables)")
+    print("Step 3 implementation: Agents 1–4, integrated recovery, metrics, dashboard and report available.")
+    print("This --check command validates reference/config files only; it does NOT run the simulation.")
+    print("Run full tests: python -m unittest discover -s tests -p test_*.py -v")
     return 0
 
 
