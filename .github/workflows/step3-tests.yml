@@ -3,7 +3,11 @@ name: LastMile Step 3 Integration Tests
 on:
   push:
     branches:
+      - main
       - integration/step3-review
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
