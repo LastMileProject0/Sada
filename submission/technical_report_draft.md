@@ -1,200 +1,79 @@
-# LastMile AI — Technical Report (DRAFT)
+# LastMile AI — Technical Report (Reviewed Draft)
 
-**AI-Powered Multi-Agent Emergency Communication & Resilience System**
-
+**AI-Powered Multi-Agent Emergency Communication & Resilience System**  
 **Event:** ITU AI for Good Lab Hackathon — United Arab Emirates  
 **Team:** LastMile AI  
-**Status:** Working Draft — Not Final Submission  
-**Repository:** [Insert verified GitHub URL]  
-**Knowledge Base:** [Insert verified KB link/access instructions]
-
-*Submission note: Transfer this draft into the official ITU technical-report template. Maximum length: 5 pages. Replace bracketed fields following team review.*
+**Repository:** https://github.com/LastMileProject0/LastMile *(repository access for judges must be confirmed)*  
+**Knowledge resources:** `lastmile_ai/knowledge/sources_registry.json`; evidence in `docs/step4/`  
+**Status:** Reviewed draft — transfer to the official ITU submission template and verify the five-page limit.
 
 ## 1. Short Introduction to the Agentic AI Solution
 
-LastMile AI is an offline, pre-event decision-support prototype designed to evaluate whether emergency warnings can reach residents, be usable under their accessibility and connectivity circumstances, and convey sufficient protective instructions.
+LastMile AI is an **offline, pre-event emergency-communication planning prototype**. It helps planners test whether a fixed warning is estimated to reach synthetic residents, whether the selected channel can convey actionable content, and whether the warning format is usable under simulated accessibility and connectivity conditions. The solution compares a fixed-priority baseline (**P0**) with up to three recovery plans (**P1–P3**), then generates a reproducible HTML dashboard and Markdown simulation report. It **does not transmit real warnings or make operational response decisions**.
 
-The system compares a standard baseline warning-delivery plan (P0) against up to three tested accessibility-aware recovery plans (P1–P3).
+## 2. Use Case and Requirements
 
-It coordinates four agents: Delivery Simulation, Risk Analysis, Policy & Accessibility, and Recovery Planning. Their results feed into a reproducible HTML dashboard and Markdown report.
+The exercise models a fictional flash-flood scenario, `AL_WADI_FLASH_FLOOD`, involving **1,000 synthetic residents** across **Zone A (400), Zone B (350), and Zone C (250)**. Profiles include hearing or visual accessibility needs, limited internet, weak mobile coverage and age-related factors. The same approved **Arabic warning** is used in all runs; the MVP selects and tests delivery channels rather than rewriting its text.
 
-The prototype does not send operational emergency warnings or make actual deployment decisions.
-
-## 2. Description and Requirements of the Use Case
-
-The use case models a fictional flash-flood emergency in Al Wadi District using a synthetic dataset of 1,000 residents across Zones A, B and C.
-
-Resident profiles include hearing and visual accessibility needs, weak mobile coverage, limited internet connectivity, age-related factors and channel availability.
-
-The planner selects one cumulative stage — T+00, T+02, T+04 or T+06 — and enables at least one of five warning channels:
-
-- CH01 — SMS
-- CH02 — Mobile App
-- CH03 — Automated Voice Call
-- CH04 — Public Sirens
-- CH05 — Digital Signage
-
-The Arabic warning is fixed across stages and plans. The MVP prioritizes selecting suitable communication channels rather than rewriting or personalizing warning content.
-
-**Core technical requirements**
-
-- Evaluate technical delivery using Delivered, Delayed, Failed and Unavailable.
-- Preserve identical scenario conditions across baseline and recovery comparisons.
-- Distinguish technical delivery from accessibility and actionable content.
-- Test recovery candidates using actual simulated outcomes.
-- Document unresolved cases, recommendations and evidence references.
-
-Public Sirens remain alert-only and cannot independently establish Effective Warning Coverage.
+A planner selects one cumulative stage (**T+00, T+02, T+04, T+06**) and enables at least one of five channels: **CH01 SMS, CH02 Mobile App, CH03 Automated Voice Call, CH04 Public Sirens, CH05 Digital Signage**. The remaining scenario conditions are fixed. Delivery outcomes are `Delivered` (arrival ≤30 seconds), `Delayed` (>30 and ≤60 seconds), `Failed`, or `Unavailable` (hard prerequisites absent). The evaluation separates **technical reach, accessibility, actionable content, and scenario-based policy review**. Sirens are alert-only and cannot alone establish Effective Warning Coverage.
 
 ## 3. Solution Architecture and Mapping to ITU-T Y.3172
 
-LastMile AI uses four coordinated modules:
+The system coordinates four agents:
 
-**Agent 1 — Delivery Simulation:** Models selected-channel warning delivery and timing using deterministic rules.
+- **Agent 1 — Delivery Simulation:** produces deterministic, per-resident outcomes for selected channels.
+- **Agent 2 — Risk Analysis:** analyzes technical gaps and assigns risk priorities.
+- **Agent 3 — Policy & Accessibility:** assesses simulated usability/actionability and separately flags Authorization and Privacy questions.
+- **Agent 4 — Recovery Planning:** proposes feasible alternative assignments, reruns them under identical conditions and explains the chosen plan.
 
-**Agent 2 — Risk Analysis:** Identifies affected residents, evaluates technical delivery risks and assigns HIGH, MEDIUM or LOW priority.
+Typed interfaces, a scenario/data layer, `pipeline.py`, `recovery_runtime.py`, metrics, tests and reporting connect these components. **ITU-T Y.3172 (2019)** §§3.2.5–3.2.6, 7.5 and 8.1–8.2 provide a *conceptual architectural comparison* for pipeline, orchestration and sandbox concepts. This prototype does **not** implement Y.3172's telecom-network ML pipeline, MLFO, IMT-2020 interfaces or formal ML sandbox. Standards conformance is **Not Assessed**. See `docs/step4/maymona_standards_mapping.md`.
 
-**Agent 3 — Policy & Accessibility:** Evaluates whether the warning format is usable, whether protective instructions are sufficient, and whether Authorization or Privacy questions require review.
+## 4. Mapping to ITU AI Readiness Report 2.0
 
-**Agent 4 — Recovery Planning:** Proposes alternative channel assignments, tests candidate plans under identical conditions, and recommends a feasible recovery plan.
+The ITU's *AI Ready — Analysis Towards a Standardized Readiness Framework*, **Report 2.0 (January 2026)**, provides analytical context rather than a certification scheme for this prototype. LastMile demonstrates a **project-level qualitative mapping** to social inclusion (accessibility/connectivity), human-supervised planning (stage/channel selection), synthetic data governance, controlled testing and cross-domain emergency-communication considerations. It does **not** demonstrate national readiness, representative population measurements, real-world infrastructure capacity, trained-model performance or end-user usability validation. See `docs/step4/maymona_standards_mapping.md` and `docs/step4/maymona_claims_sources.md`.
 
-The integration runtime coordinates the agents and calculates KPIs using actual simulation results.
+## 5. Local Policies, Standards and Knowledge Resources
 
-The architecture is conceptually related to ITU-T Y.3172 through data preparation, workflow orchestration, evaluation, controlled experimentation and feedback.
+The frozen source registry documents **five source-metadata records (SRC-01–SRC-05)**: OASIS **CAP 1.2**, **ITU-T Y.3172**, **UAE-Alert TS FS 001 v2.0**, the **UAE National Policy for Digital Accessibility**, and **UAE Federal Decree-Law No. 45/2021** on personal data protection. CAP is **advisory context**, not a pass/fail validator. **CH01 SMS is not UAE Cell Broadcast**. Authorization and Privacy are separately labeled **scenario-based reviews**, not legal approval or compliance findings; applicable legislation and implementation obligations still need qualified review.
 
-**This is an architectural mapping, not a claim of formal ITU-T Y.3172 conformance.**
-
-[Maymona: Insert verified mappings to specific Y.3172 concepts, supporting references and identified limitations.]
-
-## 4. Mapping to ITU AI Readiness Framework 2.0
-
-The prototype addresses selected AI-readiness considerations:
-
-**Social Inclusion:** Explicit consideration of disability-related access barriers and connectivity disadvantages.
-
-**Human Supervision:** Planning decisions remain under human control through stage and channel selection.
-
-**Data Governance:** Synthetic resident data is used instead of operational personal records.
-
-**Domain Integration:** Technical warning delivery, accessibility and policy considerations are assessed in a coordinated workflow.
-
-**Responsible Evaluation:** Reproducible scenarios, documented assumptions and evidence-based uncertainty are preferred over unsupported success claims.
-
-This constitutes a preliminary project-level mapping, not a national AI-readiness assessment.
-
-[Maymona: Insert validated framework-dimension mapping and source references.]
-
-## 5. Mapping to Local Policies and Standards
-
-The current project references include:
-
-- CAP 1.2 — emergency alert structure and information guidance.
-- ITU-T Y.3172 — architecture-related reference.
-- UAE mobile early-warning and Cell Broadcast documentation.
-- UAE digital-accessibility policies.
-- UAE personal data-protection legislation.
-
-CAP is used for advisory explanations only. The prototype is not an automatic CAP compliance validator.
-
-SMS (CH01) must not be confused with UAE Cell Broadcast infrastructure.
-
-Authorization and Privacy are separate scenario-based assessments. Their outputs do not constitute legal approval or certification.
-
-The current knowledge resources include a structured source registry, a fixed Arabic warning fixture and documented channel-actionability rules.
-
-A fully vectorized, queryable knowledge base must not be claimed unless independently demonstrated.
-
-[Maymona: Add verified sources, claim-to-evidence mappings, available retrieval demonstrations and unresolved policy questions.]
+The repository's current knowledge resources provide a fixed warning fixture, channel-actionability documentation and **source-metadata lookup**. They do **not** implement full-text policy retrieval, vector search, RAG or an independently demonstrated ITU-hosted knowledge base. This is a documented limitation relevant to future work. Evidence: `docs/step4/maymona_kb_inventory.md` and `docs/step4/maymona_claims_sources.md`.
 
 ## 6. Evaluation Scenario — Technical and Policy
 
-The simulation uses four cumulative event stages:
+Cumulative event stages are: **T+00** baseline; **T+02** SMS outage conditions for designated Zone B residents; **T+04** additional modeled voice/signage accessibility barriers; and **T+06** hypothetical Authorization/Privacy review questions. A selected stage is a **fresh snapshot**, not a sequence of actual messages sent. SHA-256-based deterministic assumptions support reproducible timing/failure results. P0 and all feasible recovery alternatives are evaluated on the **same residents, stage, warning and enabled channels**.
 
-**T+00:** Initial emergency warning scenario.
+Principal KPIs are **Estimated Reach** (unique residents with selected `Delivered`/`Delayed` attempts), **Effective Warning Coverage** (timely, actionable and simulation-usable selected warnings), **Recovery Improvement** (change in effective coverage, percentage points), and **Unresolved Critical Cases** (unique residents with unresolved HIGH technical priority). Missing evidence of usability is **not** evidence that a resident failed to understand the warning.
 
-**T+02:** EV01 — SMS outage conditions affect designated residents in Zone B.
+To reproduce the reviewed scenario from the repository root:
 
-**T+04:** EV02 — Additional accessibility barriers affect selected Voice Call and Digital Signage cases.
+```powershell
+python demo/run_demo.py --stage T+02
+```
 
-**T+06:** EV03 — Hypothetical Authorization and Privacy review questions arise; no external communication channel is activated.
-
-The delivery model uses deterministic SHA-256-based timing and failure assumptions to enable reproducibility.
-
-For each selected stage, the baseline and recovery plans are evaluated using identical resident profiles, warning content and scenario conditions.
-
-**Main KPIs**
-
-1. Estimated Reach — residents with selected technical arrivals marked Delivered or Delayed.
-2. Effective Warning Coverage — residents with timely, actionable, individually usable selected warnings.
-3. Recovery Improvement — improvement in effective coverage, measured in percentage points.
-4. Unresolved Critical Cases — unique residents with unresolved HIGH technical risk.
-
-The system also supports group-level accessibility analysis, channel-performance breakdowns, policy review indicators and decision traceability.
-
-**Reproducible demonstration**
-
-From the project repository root:
-
-`python demo/run_demo.py --stage T+02`
-
-Expected generated files:
-
-- `demo_output/dashboard.html`
-- `demo_output/report.md`
-
-These outputs are generated from the integrated simulation.
-
-[Ethar: Confirm scenario reproducibility and boundary-validation results.]
-
-[Salma: Confirm final P0–P3 comparison, recovery selection and trade-offs.]
-
-[Sereen: Insert the verified run results and final passing-test count after team review.]
+The run produces `demo_output/dashboard.html` and `demo_output/report.md`. **Ethar:** 10/10 scenario tests passed. **Salma:** 5/5 plan-comparison tests passed. **Full local suite:** 147/147 tests passed in **15.309 seconds**. The T+02 demo completed successfully using all five enabled channels. GitHub's displayed PR checks were green; access to that private PR must be granted for independent review.
 
 ## 7. Evaluation Findings, Uncertainty and Trade-offs
 
-**Final verified results:** [Insert approved baseline-versus-recovery results table.]
+**Verified synthetic snapshot:** T+02:00, all five channels enabled.
 
-The recommended recovery plan does not necessarily maximize every metric. A plan may improve confirmed effective coverage while reducing total technical reach.
+| Metric | Baseline P0 | Selected recovery P3 |
+|---|---:|---:|
+| Estimated Reach | 722 / 1,000 | 942 / 1,000 |
+| Effective Warning Coverage | 0 / 1,000 | 366 / 1,000 |
+| Unresolved Critical Cases | 278 | 58 |
 
-Missing evidence about SMS message completeness, voice playback completion or individual format usability must be identified for review rather than treated as confirmed success.
+**Recovery Improvement:** **+36.6 percentage points** in simulated Effective Warning Coverage; the selected plan is **P3**. This also represents **+220** people in Estimated Reach and **220 fewer** unresolved critical technical cases for the verified snapshot. **P1/P2** were tested but did not improve confirmed effective coverage in this run; see `docs/step4/salma_recovery_evaluation.md` and the generated report for actual candidate-level results.
 
-A zero effective-coverage result does not prove that residents failed to receive or understand the warning. It means the specified evidence requirements for confirmed coverage were not met within the model.
+The zero confirmed effective-coverage result under P0 **does not** imply zero technical deliveries or prove any lack of comprehension. It reflects evidence requirements for actionable, usable selected warnings within this model. More generally, the recommended plan need not maximize every KPI; some scenarios reveal technical-reach versus verified-effective-coverage trade-offs. The prototype does not verify multipart-SMS completeness, voice playback completion, real end-user comprehension, telecom performance or actual digital-signage usability.
 
-**Limitations**
+## 8. Identified Domain Policy and Standards Gaps
 
-- All residents, event conditions and network assumptions are synthetic.
-- No operational emergency messages are transmitted.
-- Actual human comprehension is not measured.
-- Voice TTS playback completion is not independently established.
-- Real-world telecommunications performance is not validated.
-- No automatic legal or CAP compliance certification is provided.
+- **G01 — Accessibility/usability evidence (Review Required):** modeled person/channel suitability is not a disability-inclusive field or assistive-technology usability study. International context: **UNDRR 2023** disability-and-disasters survey and **U.S. DOJ** guidance on accessible emergency alerts. These sources are illustrative, not UAE deployment evidence.
+- **G02 — Cross-channel interoperability (Review Required):** fixed Arabic representations do not establish live CAP exchange, telecom interoperability, complete multipart-SMS receipt or voice playback verification. International context: **OASIS CAP 1.2** and **WMO Early Warnings for All**.
+- **G03 — Authorization, privacy and data minimization (Review Required):** synthetic resident records avoid operational personal data, but real deployment would need verified warning authority, applicable legal basis, security, retention and privacy governance. Context: **UAE Federal Decree-Law No. 45/2021** and ITU AI Readiness Report 2.0.
 
-The prototype supports pre-event communication planning and controlled scenario evaluation, not live emergency response.
+These are documented **evaluation and evidence gaps**, not findings of legal violations or formal standards nonconformance. Detailed references and limitations appear in `docs/step4/maymona_policy_gaps.md` and `docs/step4/maymona_claims_sources.md`.
 
-## 8. Identified Policy and Standards Gaps
+---
 
-[Maymona: Insert 2–3 verified, domain-specific policy or standards gaps with supporting evidence and global examples.]
-
-Topics to investigate, not yet confirmed findings, include:
-
-- Accessibility evidence across multiple emergency-warning formats.
-- Alternative communication options during connectivity disruptions.
-- Authorization and privacy traceability when external communication channels are considered.
-
-Each final gap must distinguish the documented issue, applicable source, possible international comparison, and remaining uncertainty.
-
-## Final Submission Verification
-
-Before submission, confirm:
-
-- GitHub repository accessibility and verified URL.
-- Knowledge-base location, supported capabilities and access instructions.
-- Final evidence-backed mapping to ITU-T Y.3172 and AI Readiness 2.0.
-- Scenario validation and reviewed P0–P3 results.
-- Passing automated tests and reproducible demonstration.
-- Final policy and standards references.
-- Team review of the technical claims.
-- Maximum five-page length in the official ITU template.
-- Optional demonstration video link, if produced.
-
-**Status: Draft pending team evidence review and final integration.**
+**Submission checks remaining:** Confirm judges can access the repository and knowledge resources; transfer this text into the [official ITU technical-report template](https://s41721.pcdn.co/wp-content/uploads/2022/06/AI-for-Good-Sandbox-Hackathon-submission-template.docx), check the final document is **no more than five pages**, and obtain team review of citations and claims. This reviewed Markdown is **not yet the final ITU-formatted submission**.
