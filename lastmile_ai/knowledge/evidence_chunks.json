@@ -1,0 +1,142 @@
+{
+  "corpus_version": "1.0.0",
+  "created_on": "2026-11-03",
+  "purpose": "Short verified excerpts for narrow retrieval-only handoff; NOT legal advice, compliance validation, an LLM, or a full-text searchable archive.",
+  "sources_count": 5,
+  "excerpt_count": 11,
+  "retrieval_scope": "Curated source-text excerpts; pages and sections supplied, partial coverage only.",
+  "items": [
+    {
+      "evidence_id": "SRC-01-E01",
+      "source_id": "SRC-01",
+      "source_title": "Common Alerting Protocol (CAP) Version 1.2",
+      "official_url": "https://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html",
+      "section": "§3.2.2 info / instruction (OPTIONAL)",
+      "pdf_page": null,
+      "text": "The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)",
+      "search_terms": "cap instruction optional required mandatory omission missing alert message advice protect instructions معيار كاب اختياري غياب تعليمات الحمايه مخالفه",
+      "verification": "Exact excerpt from OASIS official HTML §3.2.2; accessed 2026-11-03. The original CAP PDF was not bundled; official HTML was read directly.",
+      "source_kind": "official_html"
+    },
+    {
+      "evidence_id": "SRC-02-E01",
+      "source_id": "SRC-02",
+      "source_title": "ITU-T Y.3172 — Architectural framework for machine learning in future networks including IMT-2020",
+      "official_url": "https://www.itu.int/rec/T-REC-Y.3172-201906-I/en",
+      "section": "Summary",
+      "pdf_page": 3,
+      "text": "ITU-T Y.3172 specifies an architectural framework for machine learning (ML) in future networks including IMT-2020.",
+      "search_terms": "machine learning architecture network itu y3172 معيار شبكات بنية تعلم الي",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-02-E02",
+      "source_id": "SRC-02",
+      "source_title": "ITU-T Y.3172 — Architectural framework for machine learning in future networks including IMT-2020",
+      "official_url": "https://www.itu.int/rec/T-REC-Y.3172-201906-I/en",
+      "section": "Summary",
+      "pdf_page": 3,
+      "text": "These components include, but are not limited to, an ML pipeline as well as ML management and orchestration functionalities.",
+      "search_terms": "pipeline orchestration ml architecture machine learning orchestration agent workflow انابيب تعلم نموذج وكلاء سير عمل تنسيق",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-03-E01",
+      "source_id": "SRC-03",
+      "source_title": "TS FS 001 — Enabling Cell Broadcast for National Public Warning Service (UAE-Alert)",
+      "official_url": "https://tdra.gov.ae/en/about/tdra-sectors/telecommunication/the-technology-development-affairs/-/media/1ABB576C428A4BAC8E777204233D5033.ashx",
+      "section": "Title / Technical Specification",
+      "pdf_page": 1,
+      "text": "Enabling Cell Broadcast for National Public Warning Service (UAE-Alert)",
+      "search_terms": "cell broadcast uae alert technical specification اس ام اس بث خلوي رسائل تحذير امارات",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-03-E02",
+      "source_id": "SRC-03",
+      "source_title": "TS FS 001 — Enabling Cell Broadcast for National Public Warning Service (UAE-Alert)",
+      "official_url": "https://tdra.gov.ae/en/about/tdra-sectors/telecommunication/the-technology-development-affairs/-/media/1ABB576C428A4BAC8E777204233D5033.ashx",
+      "section": "Mobile phone behaviour, item 6",
+      "pdf_page": 4,
+      "text": "Mobile devices shall support receiving and displaying emergency alerts in Arabic and English.",
+      "search_terms": "cell broadcast arabic english language mobile emergency alert notification عربي انجليزي بث خلوي لغة هاتف طوارئ",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-03-E03",
+      "source_id": "SRC-03",
+      "source_title": "TS FS 001 — Enabling Cell Broadcast for National Public Warning Service (UAE-Alert)",
+      "official_url": "https://tdra.gov.ae/en/about/tdra-sectors/telecommunication/the-technology-development-affairs/-/media/1ABB576C428A4BAC8E777204233D5033.ashx",
+      "section": "Mobile phone behaviour, item 11",
+      "pdf_page": 4,
+      "text": "The cell broadcast (CB) shall be enabled for GSM, UMTS, LTE, 5G and any future radio technologies.",
+      "search_terms": "cell broadcast cb sms gsm umts lte 5g network broadcast رسائل بث خلوي شبكة اتصالات",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-04-E01",
+      "source_id": "SRC-04",
+      "source_title": "UAE National Policy for Digital Accessibility",
+      "official_url": "https://dgov.tdra.gov.ae/en/publications/national-digital-accessibility-policy",
+      "section": "Article (2), Policy Objective",
+      "pdf_page": 6,
+      "text": "the rendered services and apps are enhanced with Digital Accessibility technologies to enable People of Determination to use the same, including emergency services.",
+      "search_terms": "accessibility policy disability emergency services apps voice formats determination warning digital اتاحه اعاقه طوارئ تحذير ذوي الهمم وسائل بديله صوت لوحات",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-04-E02",
+      "source_id": "SRC-04",
+      "source_title": "UAE National Policy for Digital Accessibility",
+      "official_url": "https://dgov.tdra.gov.ae/en/publications/national-digital-accessibility-policy",
+      "section": "Article (3), Policy Scope",
+      "pdf_page": 7,
+      "text": "The scope of this policy deals with services that are provided digitally in the UAE.",
+      "search_terms": "accessibility policy scope government services digital uae امارات سياسه اتاحه نطاق تطبيق حكومي",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-05-E01",
+      "source_id": "SRC-05",
+      "source_title": "Federal Decree-Law No. (45) of 2021 Concerning the Protection of Personal Data",
+      "official_url": "https://uaelegislation.gov.ae/en/legislations/1972",
+      "section": "Article (2), Scope and exceptions",
+      "pdf_page": 6,
+      "text": "Provisions of this Decree by Law shall not apply to the following: a. Government Data b. Governmental entities which control or process Personal Data.",
+      "search_terms": "data protection law scope government exception privacy applicability حكومة استثناء نطاق خصوصيه بيانات قانون جهات",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-05-E02",
+      "source_id": "SRC-05",
+      "source_title": "Federal Decree-Law No. (45) of 2021 Concerning the Protection of Personal Data",
+      "official_url": "https://uaelegislation.gov.ae/en/legislations/1972",
+      "section": "Article (5), Processing Controls, item 1",
+      "pdf_page": 8,
+      "text": "Processing shall be carried out in a fair, transparent and lawful manner.",
+      "search_terms": "personal data privacy legal controls processing fairness transparency authorization مشروعيه خصوصيه بيانات معالجة قانون تفويض",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    },
+    {
+      "evidence_id": "SRC-05-E03",
+      "source_id": "SRC-05",
+      "source_title": "Federal Decree-Law No. (45) of 2021 Concerning the Protection of Personal Data",
+      "official_url": "https://uaelegislation.gov.ae/en/legislations/1972",
+      "section": "Article (5), Processing Controls, item 2",
+      "pdf_page": 8,
+      "text": "Personal Data shall be collected for a specific and clear purpose.",
+      "search_terms": "personal data collection processing purpose privacy sensitive sharing external partner بيانات خصوصيه جمع مشاركه خارجي غرض محدد موافقه",
+      "verification": "Literal text verified in locally supplied official PDF (whitespace normalized); PDF page number is 1-based.",
+      "source_kind": "official_pdf"
+    }
+  ]
+}

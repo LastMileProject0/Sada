@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable, Any
 
 from lastmile_ai.agents.delivery import run_agent1
 from lastmile_ai.agents.policy_accessibility import (
@@ -76,14 +77,17 @@ def effective_resident_ids(delivery: Agent1Output,
 
 
 def run_integrated_recovery(configuration: SimulationConfiguration, *,
-                            workbook_path: str | Path | None = None) -> RecoveryRun:
+                            workbook_path: str | Path | None = None,
+                            stage_barrier_resolver: Callable[..., Any] | None = None) -> RecoveryRun:
     """Evaluate P0 then rerun Agents 1/2/3 for at most 3 recovery proposals.
 
     Crucially, successful technical delivery alone is not evidence that SMS
     segments arrived or audio was played, nor that a person could use the app.
     Missing evidence stays unknown in every plan; no evidence is fabricated.
     """
-    baseline = run_integrated_baseline(configuration, workbook_path=workbook_path)
+    baseline = run_integrated_baseline(
+        configuration, workbook_path=workbook_path,
+        stage_barrier_resolver=stage_barrier_resolver)
     residents = baseline.residents
     original_assignments = baseline.agent1_input.assignments
     original_effective = effective_resident_ids(baseline.delivery, baseline.accessibility)
@@ -108,7 +112,7 @@ def run_integrated_recovery(configuration: SimulationConfiguration, *,
             configuration, input1, delivery, risks,
             FIXTURE_ID, RULES_ID, REGISTRY_ID,
         )
-        accessibility = assess_agent3(input3)
+        accessibility = assess_agent3(input3, stage_barrier_resolver=stage_barrier_resolver)
         accessibility.validate_against_input(input3)
 
         effective = effective_resident_ids(delivery, accessibility)
@@ -179,6 +183,14 @@ def run_integrated_recovery(configuration: SimulationConfiguration, *,
             'Scenario-only policy checks; not real-world authorization.'
         )
 
+        barrier_notes = {'blocked': (), 'review_required': ()}
+        if stage_barrier_resolver is not None:
+            from lastmile_ai.agents.stage_accessibility_adapter import review_recovery_assignments
+            barrier_notes = review_recovery_assignments(candidate,
+                configuration.selected_stage, stage_barrier_resolver)
+            # Unknown remains technically eligible; Agent 3 assesses it as
+            # REVIEW and it cannot add confirmed effective coverage.
+            technical_prereqs_ok = technical_prereqs_ok and not barrier_notes['blocked']
         evaluated.append(EvaluatedPlan(candidate.plan_id, delivery, risks,
                                       accessibility, metrics, technical_prereqs_ok))
         return VerifiedEvaluation(
@@ -192,7 +204,8 @@ def run_integrated_recovery(configuration: SimulationConfiguration, *,
                 f'{metrics.effective_coverage_count}, unresolved technical critical='
                 f'{metrics.unresolved_critical_count}; hard prerequisites='
                 f'{technical_prereqs_ok}; scenario Authorization={authorization.value}, '
-                f'Privacy={privacy.value}. {scope_note}'
+                f'Privacy={privacy.value}; EV02 blocked={len(barrier_notes["blocked"])}, '
+                f'EV02 review={len(barrier_notes["review_required"])}. {scope_note}'
             ),
         )
 
@@ -201,6 +214,7 @@ def run_integrated_recovery(configuration: SimulationConfiguration, *,
         baseline_assignments=original_assignments,
         baseline_effective_ids=original_effective,
         evaluate=evaluate,
+        stage_barrier_resolver=stage_barrier_resolver,
     )
     return RecoveryRun(baseline=baseline, recovery=recovery,
                        tested_plans=tuple(evaluated))
