@@ -6,7 +6,7 @@ synthetic profile rules. No CAP validator and no legal-compliance verdicts.
 from __future__ import annotations
 import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, Callable
 from lastmile_ai.schemas import (
     Agent3Input, Agent3Output, AccessibilityFinding, AccessibilityStatus,
     PolicyFinding, PolicyCheckStatus, CAPAdvisory, EvidenceReference, EvidenceKind,
@@ -37,7 +37,8 @@ def _evidence(ref: str, desc: str, kind: EvidenceKind) -> EvidenceReference:
 
 def assess_agent3(inputs: Agent3Input, *, fixture: Mapping[str, Any] | None = None,
                   registry: Mapping[str, Any] | None = None,
-                  rendering_evidence: Mapping[tuple[str, str], Mapping[str, bool | None]] | None = None) -> Agent3Output:
+                  rendering_evidence: Mapping[tuple[str, str], Mapping[str, bool | None]] | None = None,
+                  stage_barrier_resolver: Callable[..., Any] | None = None) -> Agent3Output:
     """Return policy/accessibility findings for selected attempts only.
 
     Rendering evidence keys: (resident_id, channel_id) ->
@@ -128,4 +129,11 @@ def assess_agent3(inputs: Agent3Input, *, fixture: Mapping[str, Any] | None = No
     advisory = CAPAdvisory('OASIS CAP 1.2 describes structured alert information; advisory reference only, no validation or legal certification.', ('SRC-01',))
     output = Agent3Output(inputs.delivery_results.plan_id, tuple(findings), policies, advisory)
     output.validate_against_input(inputs)
+    if stage_barrier_resolver is not None:
+        # Conservative overlay of verified EV02 provenance. Unknown always REVIEW.
+        # No known barrier never upgrades an unsupported usability finding.
+        from .stage_accessibility_adapter import adapt_agent3_stage
+        output = adapt_agent3_stage(output, inputs.configuration.selected_stage,
+                                    stage_barrier_resolver)
+        output.validate_against_input(inputs)
     return output

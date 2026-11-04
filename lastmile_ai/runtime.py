@@ -7,6 +7,7 @@ Recovery (Agent 4) is a separate next integration step.
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Callable, Any
 
 from lastmile_ai.agents.delivery import run_agent1
 from lastmile_ai.agents.policy_accessibility import (
@@ -66,6 +67,7 @@ def run_integrated_baseline(
     configuration: SimulationConfiguration,
     *,
     workbook_path: str | Path | None = None,
+    stage_barrier_resolver: Callable[..., Any] | None = None,
 ) -> BaselineResult:
     """Load the approved residents and run actual Agent 1->2->3->metrics.
 
@@ -76,11 +78,15 @@ def run_integrated_baseline(
         raise TypeError('configuration must be SimulationConfiguration')
     residents = (load_resident_profiles() if workbook_path is None
                  else load_resident_profiles(workbook_path))
+    def stage_aware_agent3(input3):
+        return assess_agent3(input3, stage_barrier_resolver=stage_barrier_resolver)
+
     return run_baseline(
         configuration=configuration,
         residents=residents,
         assignments=build_p0_assignments(configuration, residents),
-        runners=AgentRunners(run_agent1, run_agent2, assess_agent3),
+        runners=AgentRunners(run_agent1, run_agent2,
+                             assess_agent3 if stage_barrier_resolver is None else stage_aware_agent3),
         warning_fixture_id=FIXTURE_ID,
         actionability_rules_id=RULES_ID,
         source_registry_id=REGISTRY_ID,

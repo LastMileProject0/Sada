@@ -7,7 +7,7 @@ or coverage. The evaluator must return auditable, computed results.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Callable
+from typing import Callable, Any
 
 from lastmile_ai.schemas import (
     Agent4Input, Agent4Output, AssignmentStatus, ChannelID, PlanAssignment,
@@ -72,7 +72,8 @@ def _usable_candidate(resident, channel):
 
 
 def propose_candidates(value: Agent4Input, baseline_assignments: tuple[PlanAssignment, ...],
-                       baseline_effective_ids: frozenset[str]) -> tuple[RecoveryCandidate, ...]:
+                       baseline_effective_ids: frozenset[str],
+                       stage_barrier_resolver: Callable[..., Any] | None = None) -> tuple[RecoveryCandidate, ...]:
     """Make at most three P1-P3 proposals; never report untested metrics."""
     if not isinstance(value, Agent4Input):
         raise TypeError('Requires Agent4Input')
@@ -96,14 +97,61 @@ def propose_candidates(value: Agent4Input, baseline_assignments: tuple[PlanAssig
             if resident.resident_id in baseline_effective_ids:
                 channel = previous.selected_channel
             else:
-                channel = next((ch for ch in order if ch in enabled and
-                                _eligible(resident, ch) and _usable_candidate(resident, ch)), None)
+                # With a provenance-aware resolver, do NOT pre-filter CH03/CH05
+                # on the static No flag: that flag may represent Unknown before
+                # T+04. The resolver decides confirmed barrier vs review.
+                options = [ch for ch in order if ch in enabled and
+                           _eligible(resident, ch) and
+                           (stage_barrier_resolver is not None or
+                            _usable_candidate(resident, ch))]
+                if stage_barrier_resolver is None:
+                    channel = next(iter(options), None)
+                else:
+                    from .stage_accessibility_adapter import normalize_assessment
+                    confirmed = []
+                    unknown = []
+                    for ch in options:
+                        if ch not in (ChannelID.VOICE_CALL, ChannelID.DIGITAL_SIGNAGE):
+                            confirmed.append(ch)
+                            continue
+                        status = normalize_assessment(
+                            stage_barrier_resolver(resident.resident_id,
+                                                   value.configuration.selected_stage, ch),
+                            resident_id=resident.resident_id,
+                            stage=value.configuration.selected_stage,
+                            channel_id=ch,
+                        ).barrier_status
+                        if status == 'Barrier':
+                            continue  # documented barrier: do not propose this channel
+                        if status == 'Unknown':
+                            unknown.append(ch)  # preserve technical eligibility; needs review
+                        else:
+                            confirmed.append(ch)
+                    # Unknown is a last-resort TECHNICAL assignment only, never
+                    # proof of accessibility. If the ONLY eligible route has a
+                    # confirmed barrier, retain that technically eligible route
+                    # for auditing (not endorsement); the evaluator marks the
+                    # recovery candidate unsafe and cannot recommend it. Do NOT
+                    # manufacture a No Eligible Channel status from disability.
+                    channel = (next(iter(confirmed), None)
+                               or next(iter(unknown), None)
+                               or next(iter(options), None))
             assignments.append(PlanAssignment(
                 resident_id=resident.resident_id, plan_id=plan_id,
                 assignment_status=AssignmentStatus.ASSIGNED if channel else AssignmentStatus.NO_ELIGIBLE_CHANNEL,
                 selected_channel=channel,
                 reason='Preserve baseline effective assignment' if resident.resident_id in baseline_effective_ids
-                       else 'Recovery priority strategy ' + str(index),
+                       else 'Recovery priority strategy ' + str(index)
+                       + ('; stage barrier audit required: cannot recommend confirmed barrier'
+                          if (stage_barrier_resolver is not None and channel is not None
+                              and channel in (ChannelID.VOICE_CALL, ChannelID.DIGITAL_SIGNAGE)
+                              and normalize_assessment(
+                                  stage_barrier_resolver(resident.resident_id,
+                                                         value.configuration.selected_stage, channel),
+                                  resident_id=resident.resident_id,
+                                  stage=value.configuration.selected_stage,
+                                  channel_id=channel,
+                              ).barrier_status == 'Barrier') else ''),
             ))
         proposals.append(RecoveryCandidate(
             plan_id=plan_id, assignments=tuple(assignments), feasible=True,
@@ -115,7 +163,8 @@ def propose_candidates(value: Agent4Input, baseline_assignments: tuple[PlanAssig
 
 def run_agent4(value: Agent4Input, *, baseline_assignments: tuple[PlanAssignment, ...],
                baseline_effective_ids: frozenset[str],
-               evaluate: Callable[[RecoveryCandidate], VerifiedEvaluation] | None = None) -> Agent4Output:
+               evaluate: Callable[[RecoveryCandidate], VerifiedEvaluation] | None = None,
+               stage_barrier_resolver: Callable[..., Any] | None = None) -> Agent4Output:
     """Compare actual evaluator results, or retain P0 if verification unavailable.
 
     Evaluator MUST rerun Agents 1/2/3 at identical fixed conditions and compute
@@ -132,7 +181,8 @@ def run_agent4(value: Agent4Input, *, baseline_assignments: tuple[PlanAssignment
     if evaluate is not None and not callable(evaluate):
         raise TypeError('evaluate must be a callable or None')
 
-    proposals = propose_candidates(value, baseline_assignments, baseline_effective_ids)
+    proposals = propose_candidates(value, baseline_assignments, baseline_effective_ids,
+                                   stage_barrier_resolver=stage_barrier_resolver)
     tested = []
     eligible = []
     notes = []
