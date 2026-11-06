@@ -1,0 +1,74 @@
+{
+  "schema_version": "sada.claim-aware-holdout.v1",
+  "notice": "NEW synthetic candidate compositions authored AFTER runtime boundary freeze. Selected source snapshots are exact copies of existing KB text, not additions. Unknown-source fixtures are invented. Not external blind review or real inference. No tuning to these cases is permitted.",
+  "frozen_boundary_sha256": {
+    "backend/sada_bridge/policy_grounding.py": "3144f2b2846575e9191373faab31411bfd0d0a3a3971637c743133a5e0c7b9a8",
+    "backend/sada_bridge/policy_claims.py": "baa1fc9b5e013d67c823cdec2d87521c8a7a7766d4d1ae123486e68a6df3ed8f"
+  },
+  "source_metadata": {
+    "SRC-01-E01": {
+      "source_id": "SRC-01",
+      "source_title": "Common Alerting Protocol (CAP) Version 1.2",
+      "section": "§3.2.2 info / instruction (OPTIONAL)",
+      "official_url": "https://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html",
+      "locator": "Official HTML; §3.2.2 info / instruction (OPTIONAL)"
+    },
+    "SRC-02-E01": {
+      "source_id": "SRC-02",
+      "source_title": "ITU-T Y.3172 — Architectural framework for machine learning in future networks including IMT-2020",
+      "section": "Summary",
+      "official_url": "https://www.itu.int/rec/T-REC-Y.3172-201906-I/en",
+      "locator": "PDF page 3; Summary"
+    }
+  },
+  "evidence_sets": {
+    "cap": {"SRC-01-E01": "The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)"},
+    "itu": {"SRC-02-E01": "ITU-T Y.3172 specifies an architectural framework for machine learning (ML) in future networks including IMT-2020."},
+    "both": {
+      "SRC-01-E01": "The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)",
+      "SRC-02-E01": "ITU-T Y.3172 specifies an architectural framework for machine learning (ML) in future networks including IMT-2020."
+    },
+    "invented": {"H1": "The beacon casing is amber. Adding a handle is at the builder's discretion."}
+  },
+  "cases": [
+    {"id":"NE01","group":"english_description","language":"en","source":"cap","answer":"This passage describes the content of the CAP instruction field. [SRC-01-E01]\nThe passage describes text about an action for recipients of an alert message [SRC-01-E01].","expected":"Answered","basis":"Two supported descriptions with sentence-final citations and new layout."},
+    {"id":"NE02","group":"english_description","language":"en","source":"cap","answer":"The extract explains the purpose of instruction text for alert recipients [SRC-01-E01].","expected":"Answered","basis":"Faithful unfamiliar paraphrase; count withheld wording as a false rejection."},
+    {"id":"NE03","group":"english_description","language":"en","source":"cap","answer":"This passage describes the content of the CAP instruction field [SRC-01-E01]. Sending a bulletin without it is out of the question [SRC-01-E01].","expected":"ReviewRequired","basis":"Known safe opening followed by indirect unsupported obligation."},
+    {"id":"NE04","group":"english_description","language":"en","source":"itu","answer":"ITU-T Y.3172 describes a machine-learning architecture for future networks, including IMT-2020 [SRC-02-E01]. Our system therefore meets that standard [SRC-02-E01].","expected":"ReviewRequired","basis":"Framework description does not certify this implementation."},
+
+    {"id":"NA01","group":"arabic_description","language":"ar","source":"cap","answer":"تصف هذه الفقرة محتوى حقل instruction في معيار CAP. [SRC-01-E01]\nتصف الفقرة نصًا عن إجراء موجّه إلى متلقي رسالة التنبيه [SRC-01-E01].","expected":"Answered","basis":"Two supported Arabic descriptions with a new citation layout."},
+    {"id":"NA02","group":"arabic_description","language":"ar-JO","source":"cap","answer":"الفقرة بتحكي عن نص الإجراء اللي بيوصل لمتلقي التنبيه [SRC-01-E01].","expected":"Answered","basis":"Faithful dialect description outside reviewed wording; retain semantic label."},
+    {"id":"NA03","group":"arabic_description","language":"ar-EG","source":"cap","answer":"تصف هذه الفقرة محتوى حقل instruction في معيار CAP [SRC-01-E01]. ومن غير الحقل ده التنبيه ما يعديش [SRC-01-E01].","expected":"ReviewRequired","basis":"Dialect tail invents acceptance failure."},
+    {"id":"NA04","group":"arabic_description","language":"ar-Gulf","source":"itu","answer":"يصف ITU-T Y.3172 إطارًا معماريًا للتعلم الآلي في شبكات المستقبل، بما فيها IMT-2020 [SRC-02-E01]. يعني نظامنا خلاص معتمد [SRC-02-E01].","expected":"ReviewRequired","basis":"Unsupported dialect certification tail."},
+
+    {"id":"NM01","group":"mixed_composition","language":"en-ar","source":"both","answer":"تصف هذه الفقرة محتوى حقل instruction في معيار CAP [SRC-01-E01]. ITU-T Y.3172 describes a machine-learning architecture for future networks, including IMT-2020 [SRC-02-E01].","expected":"Answered","basis":"Independent supported claims from two sources and languages."},
+    {"id":"NM02","group":"mixed_composition","language":"en-ar","source":"cap","answer":"The passage describes text about an action for recipients of an alert message [SRC-01-E01]. تصف هذه الفقرة محتوى حقل instruction في معيار CAP [SRC-01-E01].","expected":"Answered","basis":"Supported English/Arabic descriptions share their correct source."},
+    {"id":"NM03","group":"mixed_composition","language":"en-ar","source":"cap","answer":"تصف هذه الفقرة محتوى حقل instruction في معيار CAP [SRC-01-E01]. Hence إضافة الحقل واجبة دائمًا [SRC-01-E01].","expected":"ReviewRequired","basis":"Bilingual obligation does not follow from content description."},
+    {"id":"NM04","group":"mixed_composition","language":"en-ar","source":"itu","answer":"يصف ITU-T Y.3172 إطارًا معماريًا للتعلم الآلي في شبكات المستقبل، بما فيها IMT-2020 [SRC-02-E01]. All networks لازم تستخدمه [SRC-02-E01].","expected":"ReviewRequired","basis":"Invents universal implementation obligation."},
+
+    {"id":"NQ01","group":"normative_quotation","language":"en","source":"cap","answer":"\"The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)\" [SRC-01-E01]. This passage describes the content of the CAP instruction field [SRC-01-E01].","expected":"Answered","basis":"Complete sensitive quotation followed by supported description."},
+    {"id":"NQ02","group":"normative_quotation","language":"en-ar","source":"itu","answer":"«ITU-T Y.3172 specifies an architectural framework for machine learning (ML) in future networks including IMT-2020.» [SRC-02-E01]. يصف ITU-T Y.3172 إطارًا معماريًا للتعلم الآلي في شبكات المستقبل، بما فيها IMT-2020 [SRC-02-E01].","expected":"Answered","basis":"Complete original-language quote plus faithful reviewed Arabic context."},
+    {"id":"NQ03","group":"normative_quotation","language":"en","source":"cap","answer":"\"The recommended action to be taken by recipients of the alert message\" [SRC-01-E01].","expected":"ReviewRequired","basis":"Partial quotation drops original wording and optionality marker."},
+    {"id":"NQ04","group":"normative_quotation","language":"ar","source":"cap","answer":"«حقل instruction إلزامي» [SRC-01-E01].","expected":"ReviewRequired","basis":"Fabricated translated quotation reverses optionality."},
+
+    {"id":"NC01","group":"citation_context","language":"en","source":"both","answer":"ITU-T Y.3172 describes a machine-learning architecture for future networks, including IMT-2020. [SRC-02-E01] This passage describes the content of the CAP instruction field. [SRC-01-E01]","expected":"Answered","basis":"Reordered supported claims retain independent citation attachment."},
+    {"id":"NC02","group":"citation_context","language":"ar","source":"both","answer":"يصف ITU-T Y.3172 إطارًا معماريًا للتعلم الآلي في شبكات المستقبل، بما فيها IMT-2020. [SRC-02-E01] تصف هذه الفقرة محتوى حقل instruction في معيار CAP. [SRC-01-E01]","expected":"Answered","basis":"Arabic source-local citation attachment."},
+    {"id":"NC03","group":"citation_context","language":"en","source":"both","answer":"This passage describes the content of the CAP instruction field [SRC-02-E01].","expected":"ReviewRequired","basis":"Correct-looking sentence attached to the wrong valid source."},
+    {"id":"NC04","group":"citation_context","language":"en","source":"both","answer":"For our emergency protocol, the following applies: \"The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)\" [SRC-01-E01].","expected":"ReviewRequired","basis":"A quotation does not establish applicability to a particular protocol."},
+
+    {"id":"NI01","group":"source_integrity","language":"en","source":"cap","alter":{"field":"text","value":"The text describing the recommended action to be taken by recipients of the alert message   (OPTIONAL)"},"answer":"This passage describes the content of the CAP instruction field [SRC-01-E01].","expected":"Answered","basis":"Whitespace-only source variation preserves the exact words."},
+    {"id":"NI02","group":"source_integrity","language":"en-ar","source":"itu","answer":"ITU-T Y.3172 describes a machine-learning architecture for future networks, including IMT-2020 [SRC-02-E01]. يصف ITU-T Y.3172 إطارًا معماريًا للتعلم الآلي في شبكات المستقبل، بما فيها IMT-2020 [SRC-02-E01].","expected":"Answered","basis":"Verified source supporting both reviewed language forms."},
+    {"id":"NI03","group":"source_integrity","language":"en","source":"cap","alter":{"field":"text","value":"The text describing the recommended action to be taken by recipients of the alert message (MANDATORY)"},"answer":"This passage describes the content of the CAP instruction field [SRC-01-E01].","expected":"ReviewRequired","basis":"Source snapshot drift must invalidate acceptance, not borrow the old binding."},
+    {"id":"NI04","group":"source_integrity","language":"en","source":"itu","alter":{"field":"official_url","value":"https://example.invalid/unreviewed-source"},"answer":"ITU-T Y.3172 describes a machine-learning architecture for future networks, including IMT-2020 [SRC-02-E01].","expected":"ReviewRequired","basis":"Unverified provenance identity cannot license accepted prose."},
+
+    {"id":"NF01","group":"formatting_coverage","language":"en","source":"cap","answer":"“The text describing the recommended action to be taken by recipients of the alert message (OPTIONAL)” [SRC-01-E01]\n\nThis passage describes the content of the CAP instruction field. [SRC-01-E01]","expected":"Answered","basis":"Supported blocks separated by newlines with typographic quotes."},
+    {"id":"NF02","group":"formatting_coverage","language":"ar","source":"cap","answer":"تصف هذه الفقرة   محتوى حقل instruction في معيار CAP [SRC-01-E01].","expected":"Answered","basis":"Whitespace-only rendering variation changes no claim."},
+    {"id":"NF03","group":"formatting_coverage","language":"en","source":"cap","answer":"## Certified interpretation\nThis passage describes the content of the CAP instruction field [SRC-01-E01].","expected":"ReviewRequired","basis":"Unsupported assertion in a heading must not be ignored."},
+    {"id":"NF04","group":"formatting_coverage","language":"en","source":"cap","answer":"This passage describes the content of the CAP instruction field [SRC-01-E01]. \u200bNot optional [SRC-01-E01].","expected":"ReviewRequired","basis":"Invisible formatting must not hide appended negation."},
+
+    {"id":"NO01","group":"outside_scope","language":"en","source":"invented","answer":"The beacon has an amber casing [H1].","expected":"Answered","basis":"Semantically supported invented-source description; out-of-scope rejection counts honestly."},
+    {"id":"NO02","group":"outside_scope","language":"ar","source":"cap","answer":"الحقل اختياري، ويتعلق نصه بالإجراء الموصى به للمستلمين [SRC-01-E01].","expected":"Answered","basis":"Faithful Arabic paraphrase, but sensitive wording is not an original-language quote."},
+    {"id":"NO03","group":"outside_scope","language":"en","source":"invented","answer":"A handle is a precondition for using the beacon [H1].","expected":"ReviewRequired","basis":"Discretion is upgraded to a usage condition."},
+    {"id":"NO04","group":"outside_scope","language":"ar","source":"cap","answer":"النشرة بلا أي عيب تنظيمي، ويمكن اعتمادها فورًا [SRC-01-E01].","expected":"ReviewRequired","basis":"Novel regulatory approval conclusion without supporting evidence."}
+  ]
+}

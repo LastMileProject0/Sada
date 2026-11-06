@@ -1,0 +1,37 @@
+{
+  "project": "LastMile AI",
+  "scenario": "Al Wadi Flash Flood Emergency",
+  "synthetic_residents": 1000,
+  "selectable_stages": [
+    "T+00:00",
+    "T+02:00",
+    "T+04:00",
+    "T+06:00"
+  ],
+  "example_stage": "T+00:00",
+  "channels": {
+    "CH01": "SMS",
+    "CH02": "Mobile App",
+    "CH03": "Voice Call",
+    "CH04": "Public Sirens",
+    "CH05": "Digital Signage"
+  },
+  "example_enabled_channels": [
+    "CH01",
+    "CH02",
+    "CH03",
+    "CH04",
+    "CH05"
+  ],
+  "baseline_priority": [
+    "CH01",
+    "CH03",
+    "CH02",
+    "CH04",
+    "CH05"
+  ],
+  "timely_seconds": 30,
+  "observation_seconds": 60,
+  "max_recovery_candidates": 3,
+  "status": "STEP3_SYNTHETIC_SIMULATION_INTEGRATED"
+}

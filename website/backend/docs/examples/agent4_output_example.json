@@ -1,0 +1,10 @@
+{
+  "example_only": true,
+  "outcome":"No Suitable Recovery Plan Found",
+  "recommended_plan_id":"P0",
+  "baseline_metrics":{"plan_id":"P0","estimated_reach_count":0,"effective_coverage_count":0,"unresolved_critical_count":1,"actual_selected_attempts":1,"resolved_accessibility_gaps":0},
+  "candidates":[],
+  "final_metrics":{"plan_id":"P0","estimated_reach_count":0,"effective_coverage_count":0,"unresolved_critical_count":1,"actual_selected_attempts":1,"resolved_accessibility_gaps":0},
+  "explanation":"No feasible, authorized, tested improvement identified in this illustrative one-resident case.",
+  "unresolved_review_notes":["Review available options under the selected stage"]
+}
