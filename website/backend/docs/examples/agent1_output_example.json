@@ -1,0 +1,11 @@
+{
+  "example_only": true,
+  "plan_id": "P0",
+  "selected_delivery_records": [
+    {"resident_id": "R0001", "plan_id": "P0", "channel_id": "CH01", "status": "Failed", "selected_in_plan": true, "attempted": true, "attempt_time_seconds": 0, "arrival_time_seconds": null, "reason": "Synthetic test case: no arrival within 60s", "evidence": "SCENARIO_TEST"}
+  ],
+  "potential_channel_evaluations": [
+    {"resident_id": "R0001", "plan_id": "P0", "channel_id": "CH03", "status": "Delivered", "selected_in_plan": false, "attempted": false, "attempt_time_seconds": null, "arrival_time_seconds": 25, "reason": "Counterfactual potential evaluation", "evidence": "SCENARIO_TEST"}
+  ],
+  "no_eligible_assignments": []
+}

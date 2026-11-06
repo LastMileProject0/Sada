@@ -1,0 +1,93 @@
+const en = {
+  pageTitle: 'About & Limits — SADA',
+  description: 'SADA’s synthetic emergency planning scenario, four deterministic agents, accessibility assumptions and limits of separate AI explanations.',
+  title: 'About & Limits',
+  intro: 'SADA supports pre-event emergency communication planning. It lets you test warning-channel choices and compare plans in a fixed synthetic scenario, before an emergency happens.',
+  notice: 'A planning demonstration, not an operational emergency service. No real alerts are sent, no live emergency monitoring is performed, and real-emergency performance is not guaranteed.',
+  scenarioTitle: 'One fixed synthetic scenario',
+  scenario: 'AL_WADI_FLASH_FLOOD models a flash-flood warning for exactly 1,000 synthetic residents across Zones A, B and C. These are simulated profiles, not live residents or a forecast of an actual flood. You select a cumulative snapshot and a nonempty subset of five warning channels; the population and scenario assumptions stay fixed.',
+  channelsTitle: 'The five modeled channels',
+  channels: ['CH01 — SMS (not Cell Broadcast)', 'CH02 — Mobile App', 'CH03 — Automated Voice Call', 'CH04 — Public Sirens', 'CH05 — Digital Signage'],
+  stagesTitle: 'Cumulative snapshots, not a live timeline',
+  stages: [
+    'T+00 — Initial conditions; EV01 SMS-outage and EV02 accessibility conditions are not active.',
+    'T+02 — EV01 SMS-outage conditions apply to affected Zone B profiles.',
+    'T+04 — EV01 remains active and EV02 accessibility conditions are added.',
+    'T+06 — EV01 and EV02 remain active. EV03 reviews an excluded hypothetical external route; it does not mean external sharing occurred.',
+  ],
+  agentsTitle: 'Four deterministic simulation agents',
+  agents: [
+    ['1 — Delivery Simulation', 'Models selected channel attempts and their delivery outcomes under fixed timing, eligibility and failure assumptions. Simulated delivery is not proof of real receipt or understanding.'],
+    ['2 — Risk Analysis', 'Uses selected simulated arrivals and timing to identify technical delivery priorities. Accessibility review is separate; disability alone does not raise technical risk.'],
+    ['3 — Policy & Accessibility', 'Assesses modeled accessibility and actionability, with separate authorization and privacy findings and source-based policy advice. Unknown or unassessed cases are not confirmed usable.'],
+    ['4 — Recovery Planning', 'Compares baseline P0 with up to three evaluated alternatives, P1–P3, under the same conditions. It may retain P0 if no suitable recovery exists; P3 is not automatically the winner.'],
+  ],
+  assumptionsTitle: 'Accessibility and connectivity assumptions',
+  assumptions: [
+    'Profiles include age, hearing and visual impairments, limited internet, weak mobile coverage, app installation and siren/signage area flags. These fixed attributes and modeled barriers do not represent every real person’s needs or changing network conditions.',
+    'The app channel requires installation; sirens and signage require the corresponding area flags. Eligibility is not successful delivery. Internet/mobile limitations and stage-specific failures are scenario inputs, not measured live outages.',
+    'Technical reach is distinct from effective, actionable coverage. Sirens alone provide an alert, not actionable guidance. Accessibility groups can overlap and must not be added together as a unique-resident total.',
+    'Modeled accessibility does not prove that a person understood a warning or could safely act on it. Missing evidence and unresolved barriers require further human review, not an assumed pass.',
+  ],
+  aiTitle: 'Simulation is separate from limited AI/RAG',
+  ai: [
+    'The four agents are deterministic simulation logic, not four language models. The same fixed inputs produce the same simulation results; AI explanations do not change delivery outcomes, metrics or recovery decisions.',
+    'A separate AI/RAG assistant can explain policy using a limited curated set of retrieved excerpts, not exhaustive document or web search. It can be unavailable, lack sufficient evidence or require review. Do not treat generated wording as verified fact or a legal decision; check the cited evidence and seek qualified review.',
+  ],
+  limitsTitle: 'What SADA does not establish',
+  limits: [
+    'No live emergency operations, real alert transmission, resident tracking or emergency monitoring. Use official emergency services and authorized warning channels during a real event.',
+    'No guarantee of real-emergency reliability, network availability, human understanding, evacuation success or safety. Synthetic results and illustrative Home figures are not field validation.',
+    'No legal certification or automatic proof of regulatory compliance. Policy and accessibility findings support review; they do not replace qualified legal, accessibility or emergency-management assessment.',
+  ],
+  privacyTitle: 'Anonymous demonstration access',
+  privacy: 'No account or login is required. Saved evaluations and authorized reports belong to the anonymous visitor session that created them; knowing another evaluation ID does not grant access. This public explanation shows no resident-level records.',
+};
+
+const ar: typeof en = {
+  pageTitle: 'عن صدى وحدوده — صدى',
+  description: 'سيناريو صدى الصناعي للتخطيط للطوارئ، ووكلاء المحاكاة الأربعة، وافتراضات الإتاحة وحدود شروح الذكاء الاصطناعي المنفصلة.',
+  title: 'عن صدى وحدوده',
+  intro: 'يدعم صدى التخطيط المسبق لاتصالات الطوارئ. يتيح اختبار اختيار قنوات التحذير ومقارنة الخطط ضمن سيناريو صناعي ثابت قبل وقوع الطوارئ.',
+  notice: 'عرض توضيحي للتخطيط، وليس خدمة تشغيلية للطوارئ. لا تُرسل تحذيرات حقيقية، ولا تُجرى مراقبة مباشرة للطوارئ، ولا يُضمن الأداء في طوارئ فعلية.',
+  scenarioTitle: 'سيناريو صناعي واحد ثابت',
+  scenario: 'يحاكي AL_WADI_FLASH_FLOOD تحذيراً من سيول مفاجئة لمجتمع يضم بالضبط 1,000 مقيم صناعي في المناطق A وB وC. هذه ملفات افتراضية، وليست بيانات حية لسكان أو تنبؤاً بفيضان فعلي. تختار لقطة تراكمية وقناة واحدة على الأقل من خمس قنوات تحذير؛ ويظل السكان وافتراضات السيناريو ثابتين.',
+  channelsTitle: 'قنوات المحاكاة الخمس',
+  channels: ['CH01 — الرسائل النصية القصيرة (وليست البث الخلوي)', 'CH02 — تطبيق الهاتف', 'CH03 — الاتصال الصوتي الآلي', 'CH04 — صفارات الإنذار العامة', 'CH05 — اللوحات الرقمية'],
+  stagesTitle: 'لقطات تراكمية، لا خط زمني مباشر',
+  stages: [
+    'T+00 — الظروف الأولية؛ شروط انقطاع الرسائل EV01 وشروط الإتاحة EV02 غير مفعّلة.',
+    'T+02 — تسري شروط انقطاع الرسائل EV01 على الملفات المتأثرة في المنطقة B.',
+    'T+04 — تظل شروط EV01 مفعّلة وتُضاف شروط الإتاحة EV02.',
+    'T+06 — تظل شروط EV01 وEV02 مفعّلة. تتناول مراجعة EV03 مساراً خارجياً افتراضياً مستبعداً؛ ولا تعني حدوث مشاركة خارجية.',
+  ],
+  agentsTitle: 'أربعة وكلاء للمحاكاة الحتمية',
+  agents: [
+    ['1 — محاكاة الإيصال', 'يحاكي محاولات القنوات المختارة ونتائج إيصالها وفق افتراضات ثابتة للتوقيت والأهلية والتعطل. الإيصال في المحاكاة ليس دليلاً على الاستلام أو الفهم الفعلي.'],
+    ['2 — تحليل المخاطر', 'يستخدم الوصول المحاكى المختار وتوقيته لتحديد أولويات الإيصال التقنية. مراجعة الإتاحة منفصلة؛ ولا ترفع الإعاقة وحدها مستوى المخاطر التقنية.'],
+    ['3 — السياسات والإتاحة', 'يقيّم الإتاحة وقابلية التصرف ضمن النموذج، مع نتائج منفصلة للتفويض والخصوصية وإرشادات سياسات مستندة إلى مصادر. لا تُعد الحالات المجهولة أو غير المقيّمة مؤكدة القابلية للاستخدام.'],
+    ['4 — تخطيط التعافي', 'يقارن الخطة الأساسية P0 بما يصل إلى ثلاثة بدائل مقيّمة، P1–P3، تحت الظروف نفسها. قد يحتفظ بـ P0 إذا لم يوجد تعافٍ مناسب؛ ولا تُختار P3 تلقائياً.'],
+  ],
+  assumptionsTitle: 'افتراضات الإتاحة والاتصال',
+  assumptions: [
+    'تتضمن الملفات العمر والإعاقات السمعية والبصرية ومحدودية الإنترنت وضعف تغطية الهاتف وتثبيت التطبيق ومؤشرات الوجود ضمن نطاق الصفارات واللوحات. لا تمثل هذه السمات الثابتة والحواجز المحاكاة جميع الاحتياجات الفعلية أو تغير ظروف الشبكات.',
+    'تتطلب قناة التطبيق تثبيته؛ وتتطلب الصفارات واللوحات مؤشرات النطاق المناسبة. الأهلية لا تعني نجاح الإيصال. قيود الإنترنت والهاتف وأعطال المراحل مدخلات للسيناريو، وليست انقطاعات مباشرة مقاسة.',
+    'يختلف الوصول التقني عن التغطية الفعّالة القابلة للتصرف. الصفارات وحدها تنبّه ولا تقدم إرشادات قابلة للتنفيذ. قد تتداخل فئات الإتاحة، فلا تُجمع أعدادها لحساب إجمالي المقيمين الفريدين.',
+    'لا تثبت الإتاحة ضمن النموذج أن الشخص فهم التحذير أو استطاع التصرف بأمان. يتطلب نقص الأدلة والحواجز غير المحلولة مراجعة بشرية إضافية، لا افتراض الاجتياز.',
+  ],
+  aiTitle: 'المحاكاة منفصلة عن الذكاء الاصطناعي واسترجاع المعرفة المحدود',
+  ai: [
+    'الوكلاء الأربعة منطق محاكاة حتمي، وليسوا أربعة نماذج لغوية. تنتج المدخلات الثابتة نفسها نتائج المحاكاة نفسها؛ ولا تغيّر شروح الذكاء الاصطناعي نتائج الإيصال أو المؤشرات أو قرارات التعافي.',
+    'يمكن لمساعد منفصل للذكاء الاصطناعي واسترجاع المعرفة شرح السياسات باستخدام مجموعة محدودة ومنتقاة من المقتطفات المسترجعة، وليس بحثاً شاملاً في الوثائق أو الويب. قد يتعذر توفره أو لا تتوفر أدلة كافية أو تلزم مراجعة. لا تعتبر النص المولّد حقيقة متحققة أو حكماً قانونياً؛ تحقّق من الأدلة المشار إليها واطلب مراجعة مختصة.',
+  ],
+  limitsTitle: 'ما لا يثبته صدى',
+  limits: [
+    'لا توجد عمليات طوارئ مباشرة أو إرسال تحذيرات حقيقية أو تتبع للسكان أو مراقبة للطوارئ. استخدم خدمات الطوارئ الرسمية وقنوات التحذير المعتمدة عند وقوع حدث حقيقي.',
+    'لا ضمان للموثوقية في الطوارئ الفعلية أو توفر الشبكات أو فهم الأشخاص أو نجاح الإخلاء أو السلامة. النتائج الصناعية وأرقام الرئيسية التوضيحية ليست تحققاً ميدانياً.',
+    'لا شهادة قانونية أو إثبات تلقائي للامتثال التنظيمي. تدعم نتائج السياسات والإتاحة المراجعة؛ ولا تحل محل تقييم مختص في القانون أو الإتاحة أو إدارة الطوارئ.',
+  ],
+  privacyTitle: 'وصول مجهول للعرض التوضيحي',
+  privacy: 'لا يلزم حساب أو تسجيل دخول. تتبع التقييمات المحفوظة والتقارير المصرح بها جلسة الزائر المجهولة التي أنشأتها؛ ولا تمنح معرفة معرّف تقييم آخر حق الوصول إليه. لا يعرض هذا الشرح العام سجلات على مستوى المقيمين.',
+};
+
+export const aboutT = { en, ar };
