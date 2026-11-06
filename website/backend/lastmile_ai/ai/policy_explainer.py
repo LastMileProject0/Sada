@@ -198,6 +198,16 @@ def explain_policy(question: str, retrieval: Mapping[str, Any], *,
     if requires_legal_review(answer):
         return _result(question, REVIEW, model_id=model, invoked=True,
                        limitations=('Potential legal claim requires human review.',))
+    if 'INSUFFICIENT INFORMATION' in answer.upper():
+        return _result(
+            question, REVIEW,
+            model_id=model,
+            invoked=True,
+            limitations=(
+                'Model answer contains an insufficient-evidence warning; human review required.',
+            ),
+        )
+
     citations = tuple({k:by_id[r][k] for k in ('passage_id','source_id','section','official_url')}
                       for r in dict.fromkeys(refs))
     return _result(question, ANSWERED, answer=answer, citations=citations,
