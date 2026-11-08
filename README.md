@@ -1,7 +1,28 @@
-# LastMile AI — Step 3 Integrated Synthetic Prototype
+# SADA AI — Emergency Warning Resilience Planning
+
+**SADA AI** is a policy-informed, four-agent prototype for **offline, pre-event emergency-warning planning**. It uses 1,000 synthetic resident profiles to compare delivery channels, identify technical and accessibility risks, and evaluate recovery plans across staged scenarios. It is **not** a live alert-dispatch service or a certified emergency-response platform.
+
+**Public website:** [SADA AI demo](https://safe-integration-testing-copy-of-sada.replit.app/)  
+**Technical report and submission documents:** [`docs/submission/`](docs/submission/)  
+**Reproducible Python demo instructions:** [`demo/README.md`](demo/README.md)
+
+### Submission resources
+
+- [KB reference sources (JSON)](docs/submission/kb_reference_sources.json) — five proposed official reference sources, documented separately from the runtime knowledge base.
+- [KB reference schema](docs/submission/kb_reference_schema.md) — general-purpose source metadata and documentation format.
+- [Policy and standards gap mapping](docs/submission/policy_gap_mapping.md) — emergency communications, accessibility, transparency and AI-risk comparisons.
+- [Four-agent and auditability summary](docs/submission/agents_audit_summary.md) — workflow, evidence handoffs and limitations.
+- [T+00 plan-comparison evidence](docs/submission/step4_T00_comparison.md) — a reproducible synthetic example.
+- [Final technical report (PDF)](docs/submission/SADA_AI_Final_Technical_Report_With_Mentor.pdf).
+
+**Scope note:** The additional KB JSON is **documentation-only**, not new runtime retrieval content. The prototype's evidence, source references and simulated outcomes do not imply full legal, cybersecurity or accessibility compliance. The demo video link can be added when its final edit is complete.
+
+---
+
+## Technical prototype — LastMile AI (Step 3 integrated simulation)
 
 **AI-Powered Multi-Agent Emergency Communication & Resilience System**  
-**Team:** Sirin (integration, metrics, dashboard/report), Ethar (Agent 1), Salma (Agents 2 & 4), Maymona (Agent 3).
+**Team:** Sereen (integration, metrics, dashboard/report), Ethar (Agent 1), Salma (Agents 2 & 4), Maymona (Agent 3).
 
 ## Scope and status
 

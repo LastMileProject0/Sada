@@ -1,0 +1,370 @@
+{
+  "project": "SADA AI",
+  "artifact": "kb_reference_sources",
+  "schema_version": "1.0.0",
+  "prepared_on": "2026-11-08",
+  "owner": "Maymona — Knowledge Base & UAE Policies",
+  "integration_status": "documentation_only",
+  "purpose": "Submission-only reference map of official UAE sources for SADA emergency warning resilience planning.",
+  "source_count": 5,
+  "chunk_count": 15,
+  "existing_runtime_registry_unchanged": true,
+  "scope_guardrails": [
+    "Documentation only; not automatically loaded into runtime KB, retrieval index, vector store, prompts or reports.",
+    "Not a CAP or telecom protocol validator, and not a legal or AI cybersecurity compliance certification.",
+    "No new alert channel or change to five current simulated channels; no dispatch or personal-data sharing.",
+    "Chunk summaries are original editorial paraphrases with section anchors, not verbatim or validated indexed source-text passages.",
+    "Institutional authority for real emergency warnings requires separate official operational/legal review."
+  ],
+  "sources": [
+    {
+      "source_id": "UAE-REF-01",
+      "name": "Federal Decree by Law No. (8) of 2025 Regarding the Establishment of the Federal Authority for Ambulance and Civil Defense",
+      "name_ar": "المرسوم بقانون اتحادي رقم (8) لسنة 2025 بشأن إنشاء الهيئة الاتحادية للإسعاف والدفاع المدني",
+      "issuing_authority": "United Arab Emirates — Federal Government (federal legislation)",
+      "authority_role": "Creates and assigns competences to the Federal Authority for Ambulance and Civil Defense; it does not make SADA an authorized warning issuer.",
+      "source_type": "federal_decree_law",
+      "published_version": "Federal Decree-Law No. 8 of 2025",
+      "official_url": "https://uaelegislation.gov.ae/en/legislations/3231/download",
+      "official_reference_page": "https://uaelegislation.gov.ae/en/legislations/3231",
+      "relevant_sections": [
+        "Article 2 — Establishment of the Authority",
+        "Article 4(2) — Hazard and disaster planning in coordination with NCEMA",
+        "Article 4(5) — Public warning system in coordination with NCEMA",
+        "Article 4(6) — Evacuation plans"
+      ],
+      "sada_relevance": "Institutional-responsibilities context for warning-system planning; SADA is a pre-event synthetic decision-support laboratory, not a public-warning authority.",
+      "chunks": [
+        {
+          "chunk_id": "UAE-REF-01-C01",
+          "section": "Article 2 — Establishment of the Authority",
+          "summary": "The decree establishes a federal authority concerned with ambulance and civil-defence responsibilities and defines its institutional position.",
+          "sada_connection": "Map the real-world owner and decision-maker questions for future deployment; do not attribute operating authority to SADA.",
+          "tags": [
+            "institutional_roles",
+            "authority",
+            "civil_defense"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-01-C02",
+          "section": "Article 4(2) and 4(5) — Planning and population warning",
+          "summary": "The authority has functions involving disaster planning and establishing a population warning system in coordination with the National Emergency, Crisis and Disasters Management Authority.",
+          "sada_connection": "Explains why real warnings require designated institutions and coordination; SADA only models alternatives before an event.",
+          "tags": [
+            "public_warning",
+            "ncema",
+            "institutional_coordination"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-01-C03",
+          "section": "Article 4(6) — Population evacuation",
+          "summary": "The law assigns a function related to preparing and supervising evacuation plans through coordination with competent stakeholders.",
+          "sada_connection": "An actionable warning may support protective decisions, but SADA does not direct evacuations or create official plans.",
+          "tags": [
+            "evacuation",
+            "roles",
+            "human_review"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        }
+      ],
+      "verification": {
+        "checked_on": "2026-11-08",
+        "basis": "Official federal legislation English PDF, cover and Article 2/4; Article 4 displayed in official PDF page 4.",
+        "status": "official_primary_text_reviewed",
+        "limitations": [
+          "Legal applicability, amendments and real delegation of authority require qualified official review.",
+          "English translation may not be the legally controlling text; avoid legal certification."
+        ]
+      },
+      "integration_status": "documentation_only"
+    },
+    {
+      "source_id": "UAE-REF-02",
+      "name": "National Telecom Emergency Management Plan — Strategic Guide",
+      "name_ar": "الخطة الوطنية لإدارة طوارئ قطاع الاتصالات — الدليل الاستراتيجي",
+      "issuing_authority": "Telecommunications Regulatory Authority (TRA), now Telecommunications and Digital Government Regulatory Authority (TDRA), UAE",
+      "authority_role": "Sector-level planning and coordination for telecommunications emergency resilience; no claim that the public 2018 file is the latest operational plan.",
+      "source_type": "telecom_emergency_plan",
+      "published_version": "Public strategic guide, version 1.0, dated 2018-07-10",
+      "official_url": "https://tdra.gov.ae/-/media/TDRA-Media/Resources/Arabic/National-Telecom-Emergency-Management-Plan.ashx",
+      "official_reference_page": "https://tdra.gov.ae/en/initiatives/business-resilience-and-continuity-in-the-telecom",
+      "relevant_sections": [
+        "Executive Summary — telecom infrastructure resilience",
+        "Strategic Guidance — preparedness, response, recovery and mitigation",
+        "Stakeholder Roles and Responsibilities",
+        "Emergency-management stages and coordination"
+      ],
+      "sada_relevance": "Reference for resilience, continuity, dependencies and coordinated fallback planning under simulated disruption EV01, without claiming live telecom conformance.",
+      "chunks": [
+        {
+          "chunk_id": "UAE-REF-02-C01",
+          "section": "Executive Summary — Resilience and continuity",
+          "summary": "The public strategic guide treats critical telecommunications infrastructure as important to national services and emphasizes readiness, coordinated response and recovery.",
+          "sada_connection": "Justifies evaluating communications loss and feasible recovery options, while all simulated delivery figures remain synthetic.",
+          "tags": [
+            "telecom_resilience",
+            "critical_infrastructure",
+            "continuity"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-02-C02",
+          "section": "Strategic Guidance — Preparedness, Response, Recovery, Mitigation",
+          "summary": "The guide organizes emergency management around readiness measures, response coordination, recovery planning and mitigation or exercises.",
+          "sada_connection": "Map the staged SADA scenarios and before/after recovery comparison conceptually to preparedness and resilience testing.",
+          "tags": [
+            "preparedness",
+            "response",
+            "recovery",
+            "simulation"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-02-C03",
+          "section": "Stakeholder roles; TDRA Business Resilience and Continuity overview",
+          "summary": "Sector preparedness depends on coordination among regulatory bodies, licensed telecom providers and other affected organizations; the current TDRA overview describes drills and resilience efforts.",
+          "sada_connection": "Highlight that SADA does not control real carriers and requires human/operational authorization for any external action.",
+          "tags": [
+            "stakeholder_coordination",
+            "telecom_operators",
+            "drills"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        }
+      ],
+      "verification": {
+        "checked_on": "2026-11-08",
+        "basis": "TDRA-hosted publicly indexed strategic guide (2018 version 1.0) plus TDRA business-resilience overview.",
+        "status": "official_public_edition_reviewed",
+        "limitations": [
+          "TDRA states that the plan has evolved; whether the public 2018 PDF is the latest applicable edition is not confirmed.",
+          "The public strategic guide should not be represented as a verified current telecom operating procedure."
+        ]
+      },
+      "integration_status": "documentation_only"
+    },
+    {
+      "source_id": "UAE-REF-03",
+      "name": "UAE National Strategy for Artificial Intelligence 2031",
+      "name_ar": "الاستراتيجية الوطنية للذكاء الاصطناعي 2031",
+      "issuing_authority": "UAE Artificial Intelligence, Digital Economy and Remote Work Applications Office / UAE Government",
+      "authority_role": "National strategic direction for AI adoption, experimentation, data and governance.",
+      "source_type": "national_ai_strategy",
+      "published_version": "Strategy for AI 2031 (official published strategy; do not infer a 2026 edition)",
+      "official_url": "https://ai.gov.ae/strategy/",
+      "official_reference_page": "https://ai.gov.ae/wp-content/uploads/2021/07/UAE-National-Strategy-for-Artificial-Intelligence-2031.pdf",
+      "relevant_sections": [
+        "Smart Government",
+        "Data Sharing and Governance",
+        "Objective 4 — Adopt AI across customer services",
+        "Objective 7 — Data and infrastructure as an AI test-bed",
+        "Objective 8 — Strong governance and effective regulation"
+      ],
+      "sada_relevance": "Supports responsible experimentation and governance-minded AI explanations, rather than claims that SADA is a nationally authorized or strategy-certified system.",
+      "chunks": [
+        {
+          "chunk_id": "UAE-REF-03-C01",
+          "section": "Smart Government; Objective 4",
+          "summary": "The strategy encourages practical AI adoption to improve public services and people’s lives.",
+          "sada_connection": "SADA studies an emergency-communication planning use case, but does not demonstrate real public-service deployment.",
+          "tags": [
+            "smart_government",
+            "public_services",
+            "ai_adoption"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-03-C02",
+          "section": "Objective 7 — Data and supporting infrastructure",
+          "summary": "The strategy identifies data availability and appropriate supporting infrastructure as prerequisites for experimentation with AI.",
+          "sada_connection": "Reference the controlled synthetic dataset, traceable source materials and sandbox-style demonstration; avoid claiming national readiness.",
+          "tags": [
+            "data_governance",
+            "testbed",
+            "infrastructure"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-03-C03",
+          "section": "Data Sharing and Governance; Objective 8",
+          "summary": "The strategy recognizes governance, effective regulation and attention to possible adverse impacts as important for responsible AI progress.",
+          "sada_connection": "Supports human-review gates, explicit evidence and separating AI explanation from deterministic KPIs.",
+          "tags": [
+            "ai_governance",
+            "accountability",
+            "human_oversight"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        }
+      ],
+      "verification": {
+        "checked_on": "2026-11-08",
+        "basis": "Official UAE AI Office strategy page (search-visible official text); a published strategy PDF is separately linked.",
+        "status": "official_government_strategy_reviewed",
+        "limitations": [
+          "Strategic objectives are not SADA-specific technical requirements or an endorsement.",
+          "The PDF link may be access-restricted in some clients; the official strategy webpage remains the main reference."
+        ]
+      },
+      "integration_status": "documentation_only"
+    },
+    {
+      "source_id": "UAE-REF-04",
+      "name": "The National Cyber Security Policy for Artificial Intelligence",
+      "name_ar": "السياسة الوطنية للأمن السيبراني للذكاء الاصطناعي",
+      "issuing_authority": "UAE Cyber Security Council (described on the UAE Government official portal)",
+      "authority_role": "Government-level cybersecurity policy context for AI/ML development, operation, human oversight, infrastructure and monitoring.",
+      "source_type": "ai_cybersecurity_policy",
+      "published_version": "Official UAE Government policy page; last-updated date shown as 2026-07-02; policy edition not established",
+      "official_url": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/policies/cyber-activities/The-National-Cyber-Security-Policy-for-Artificial-Intelligence",
+      "official_reference_page": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/policies/cyber-activities",
+      "relevant_sections": [
+        "Governance",
+        "Infrastructure & Application Security",
+        "Algorithm Security",
+        "Operational Safety",
+        "Adversarial AI Attacks",
+        "AI Monitoring & Response"
+      ],
+      "sada_relevance": "Defines security-review topics relevant to policy-grounded explanations and synthetic scenario controls; no security certification or penetration-test claim.",
+      "chunks": [
+        {
+          "chunk_id": "UAE-REF-04-C01",
+          "section": "Governance; Infrastructure & Application Security",
+          "summary": "The official summary discusses management of AI security risks, change control, asset security, testing and application protection.",
+          "sada_connection": "Document security boundaries and the need for deployment-specific code, application and provider reviews.",
+          "tags": [
+            "cyber_governance",
+            "application_security",
+            "change_control"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-04-C02",
+          "section": "Algorithm Security; Operational Safety",
+          "summary": "The policy summary calls attention to protecting AI models and data, securing inference and supporting human oversight and operational resilience.",
+          "sada_connection": "Keep Qwen explanatory output separate from simulation results and require review for consequential claims.",
+          "tags": [
+            "model_security",
+            "human_oversight",
+            "operational_safety"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-04-C03",
+          "section": "Adversarial AI Attacks; AI Monitoring & Response",
+          "summary": "The official summary covers hostile AI threats, monitoring, incident response, and cybersecurity reporting or investigation capabilities.",
+          "sada_connection": "Record these as future assessment topics; passing unit tests alone does not prove adversarial robustness or operational incident response.",
+          "tags": [
+            "ai_attacks",
+            "monitoring",
+            "incident_response"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        }
+      ],
+      "verification": {
+        "checked_on": "2026-11-08",
+        "basis": "Official UAE Government policy overview, whose page indicates update on 2026-07-02.",
+        "status": "official_government_summary_reviewed",
+        "limitations": [
+          "Full policy PDF and clause-level applicability were not independently examined in this handoff.",
+          "Do not treat portal last-updated date as original policy publication date or compliance assessment."
+        ]
+      },
+      "integration_status": "documentation_only"
+    },
+    {
+      "source_id": "UAE-REF-05",
+      "name": "The UAE Charter for the Development and Use of Artificial Intelligence",
+      "name_ar": "ميثاق تطوير واستخدام الذكاء الاصطناعي في دولة الإمارات",
+      "issuing_authority": "UAE Artificial Intelligence, Digital Economy and Remote Work Applications Office",
+      "authority_role": "National principles for ethical, safe, privacy-conscious and inclusive AI, including human oversight.",
+      "source_type": "ai_charter",
+      "published_version": "Official AI Office charter PDF, July 2024",
+      "official_url": "https://ai.gov.ae/wp-content/uploads/2024/07/UAEAI-Methaq-EN2-3.pdf",
+      "official_reference_page": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/policies/Ai/The-UAE-Charter-for-the-Development-and-Use-of-Artificial-Intelligence",
+      "relevant_sections": [
+        "Principle 2 — Safety",
+        "Principle 3 — Algorithmic Bias",
+        "Principle 4 — Data Privacy",
+        "Principles 5–7 — Transparency, Human Oversight, Governance and Accountability",
+        "Principle 11 — Inclusive Future"
+      ],
+      "sada_relevance": "Supporting ethical reference for explainability, accessibility and keeping consequential decisions under human review, without claiming Charter compliance.",
+      "chunks": [
+        {
+          "chunk_id": "UAE-REF-05-C01",
+          "section": "Principles 2–4 — Safety, Bias and Data Privacy",
+          "summary": "The Charter emphasizes safe AI, inclusive treatment and privacy-aware handling of data.",
+          "sada_connection": "Frame inclusive warning evaluation and data minimization as guiding principles rather than verified real-world safeguards.",
+          "tags": [
+            "safety",
+            "inclusion",
+            "privacy"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-05-C02",
+          "section": "Principles 5–7 — Transparency, Human Oversight and Accountability",
+          "summary": "The Charter encourages transparent AI decisions, human judgment and responsible governance.",
+          "sada_connection": "Provide an ethical rationale for source citations, review flags and keeping the planner responsible for final choices.",
+          "tags": [
+            "transparency",
+            "human_oversight",
+            "accountability"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        },
+        {
+          "chunk_id": "UAE-REF-05-C03",
+          "section": "Principle 11 — AI Awareness for an Inclusive Future",
+          "summary": "The Charter supports equitable access to the benefits of AI across segments of society.",
+          "sada_connection": "Emphasize why accessibility differences matter in simulated emergency warning resilience; no actual population access assessment.",
+          "tags": [
+            "inclusion",
+            "equity",
+            "accessibility"
+          ],
+          "kind": "editorial_section_summary_not_verbatim_quote",
+          "retrieval_indexed": false
+        }
+      ],
+      "verification": {
+        "checked_on": "2026-11-08",
+        "basis": "Official UAE AI Office Charter PDF (July 2024) and UAE Government explanatory page.",
+        "status": "official_primary_text_reviewed",
+        "limitations": [
+          "This Charter supplies principles, not a SADA product certification or guaranteed adherence."
+        ]
+      },
+      "integration_status": "documentation_only"
+    }
+  ]
+}
