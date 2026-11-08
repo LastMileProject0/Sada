@@ -1,7 +1,7 @@
 # LastMile AI — Step 3 Integrated Synthetic Prototype
 
 **AI-Powered Multi-Agent Emergency Communication & Resilience System**  
-**Team:** Sirin (integration, metrics, dashboard/report), Ethar (Agent 1), Salma (Agents 2 & 4), Maymona (Agent 3).
+**Team Astra:** Sereen (integration, metrics, dashboard/report), Ethar (Agent 1), Salma (Agents 2 & 4), Maymona (Agent 3).
 
 ## Scope and status
 
