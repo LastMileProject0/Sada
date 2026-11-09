@@ -90,3 +90,17 @@ Open `demo_output/dashboard.html` in a browser and `demo_output/report.md` with 
 | `lastmile_ai/knowledge/` | Fixed Arabic warning and source registry |
 
 The master Step 1 document is in `docs/reference/`; team handoffs and assumptions are in `docs/`. See the committed unit tests for the checked behavior. Demo values are simulated assumptions, not measured emergency-response performance.
+
+## License & Permissions
+
+© 2026 SADA AI Project Contributors. All rights reserved.
+
+**Academic Affiliation:** Al-Balqa Applied University, Faculty of Artificial Intelligence, Jordan.
+
+SADA AI source code is publicly available for viewing, academic review, and project evaluation only.
+
+Modification, reuse, redistribution, commercial use, or incorporation into other projects requires prior written permission from the authorized rights holders.
+
+To request permission, please contact the SADA AI team through GitHub Issues. Permission is not granted unless written approval is received.
+
+See the [LICENSE](LICENSE) file for full terms.
